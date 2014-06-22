@@ -2,7 +2,7 @@
 // This is the login page for the site.
 ob_start();
 session_start();
-include('header.html');
+include('header.php');
 
 ?>
 
@@ -48,7 +48,7 @@ if (isset($_POST['submitted'])) {
 							
 			$url = BASE_URL . 'index.php'; // Define the URL:
                // $url = 'http://www.egrettv.org/index.php'; // Define the URL:
-			ob_end_clean(); // Delete the buffer.
+			//ob_end_clean(); // Delete the buffer.
 			header("Location: $url");
 			exit(); // Quit the script.
 				
