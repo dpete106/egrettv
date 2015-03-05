@@ -148,7 +148,7 @@ $p = mysql_real_escape_string(trim($_POST['pass']));
       <hr>
 
       <footer>
-        <p>&copy; egretTV.org 2014</p>
+        <p>&copy; egretTV.org 2015</p>
       </footer>
 
     </div> <!-- /container -->

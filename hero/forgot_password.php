@@ -102,7 +102,7 @@ if (isset($_POST['submitted'])) {
       <hr>
 
       <footer>
-        <p>&copy; egretTV.org 2014</p>
+        <p>&copy; egretTV.org 2015</p>
       </footer>
 
     </div> <!-- /container -->

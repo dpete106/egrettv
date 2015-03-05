@@ -2,6 +2,9 @@
 // This is the login page for the site.
 ob_start();
 session_start();
+
+
+
 include('header.php');
 
 ?>
@@ -44,13 +47,17 @@ if (isset($_POST['submitted'])) {
 			$_SESSION = mysql_fetch_array ($r, MYSQL_ASSOC); 
 
 			mysql_free_result($r);
-			mysql_close($dbc);
+			//mysql_close($dbc);
 							
 			$url = BASE_URL . 'index.php'; // Define the URL:
                // $url = 'http://www.egrettv.org/index.php'; // Define the URL:
 			//ob_end_clean(); // Delete the buffer.
-			header("Location: $url");
-			exit(); // Quit the script.
+			
+			//header("Location: $url");
+			
+			//exit(); // Quit the script.
+			
+			echo '<div class="alert alert-danger">logged in</div>';
 				
 		} else { // No match was made.
 			echo '<div class="alert alert-danger">Either the email address and password entered do not match those on file or you have not yet activated your account.</div>';
@@ -101,7 +108,7 @@ if (isset($_POST['submitted'])) {
       <hr>
 
       <footer>
-        <p>&copy; egretTV.org 2014</p>
+        <p>&copy; egretTV.org 2015</p>
       </footer>
 
     </div> <!-- /container -->
@@ -129,7 +136,7 @@ if (isset($_POST['submitted'])) {
 </html>
 
 <?php
-
+echo session_id();
 ob_end_flush();
 
 ?>
