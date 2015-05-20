@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
-<?php
+  <?php
 /***************GET PAGE FROM URL***********************/
 $uri_array=explode("/", $_SERVER['REQUEST_URI']);
 $page = str_replace(".php", "", end($uri_array));
@@ -10,136 +9,137 @@ $page = str_replace(".php", "", end($uri_array));
 if ($page == "webcam" ){
     
 	echo "<meta charset='utf-8'>
-    	<title>live bird cam web | egretTV</title>
+    	<title>live bird cam web | egret.tv</title>
+		<link rel='icon' href='favicon.ico' type='image/x-icon'/>    	
     	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    	<meta name='author' content='egrettv.org'>
-	<meta name='description' content='This is the best bird cam streaming live on the web.  On this egrettv.org live bird cam you will see herons and egrets in their natural habitat in the Connecticut Long Island Sound ecosystem.'/> 
+    	<meta name='author' content='egret.tv'>
+	<meta name='description' content='This is a live video cam of egret birds.  On this egret.tv live video cam birds you will see herons and egrets in their natural habitat in the Connecticut Long Island Sound ecosystem.'/> 
 	
-	<meta name='keywords' content='live bird cam web egrettv egret heron'/>";
+	<meta name='keywords' content='live video cam birds egret heron'/>";
 
 }else {
 
     
 	echo "<meta charset='utf-8'>
-    	<title>bird egret heron connecticut | egretTV</title>
+    	<title>egret heron bird | egret.tv</title>
+    	<link rel='icon' href='favicon.ico' type='image/x-icon'/> 
     	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
     	<meta name='author' content='egrettv.org'>
-	<meta name='description' content='egretTV is about viewing live web cam streamming and recorded videos of egret and heron birds in their natural habitat of Connecticut\'s Long Island Sound ecosystem. egretTV.org is dedicated to protection of the environment.'/> 
+	<meta name='description' content='This is the egret heron bird website.  On this egret.tv live video cam birds you will see herons and egrets in their natural habitat in the Connecticut Long Island Sound ecosystem.'/> 
 	
-	<meta name='keywords' content='bird egret heron cam web environment connecticut long island sound'/>";
+	<meta name='keywords' content='egret heron bird '/>";
 }
 ?>	
-<meta name="google-site-verification" content="qA-eDfaTxaHnmbIwu9ChKYC_toGWOLyKj1Syv_c-GEI" />
-    <!-- Le styles -->
-    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../favicon.ico"> -->
+
+	
+    <title>Jumbotron Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/jumbotron.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
-    <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--<script src="../../assets/js/ie-emulation-modes-warning.js"></script>-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-20010340-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-48659104-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
   </head>
 
   <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<?php include_once("analyticstracking.php") ?>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="../blog/">Video Blog</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li><a href="../hero/webcam.php">Live Webcam</a></li>
-              <li><a href="../hero/connect.php">Connect</a></li>
-              <li><a href="../hero/map.php">Map</a></li>
-              <li><a href="../hero/demo.php">Demo</a></li>
-              <li class="active"><a href="../index.php">Home</a></li>
+            <a class="navbar-brand" href="../blog/index.php">Video blog</a>
+        </div><!--/.navbar-header -->  
+
+		<div id="navbar" class="navbar-collapse collapse">          
+			<ul class="nav navbar-nav">
+            	<li class="active"><a class="navbar-brand"  href="../index.php">Home</a></li>
+            	<li><a class="navbar-brand"  href="../hero/connect.php">Connect</a></li>
+            	<li><a class="navbar-brand"  href="../hero/webcam.php">Webcam</a></li>
+                    
+            	<li class="dropdown">
+            
+<?php  
+			if (isset($_SESSION['user_id'])) {
+				$first_name = $_SESSION['first_name'];
+				echo "<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>$first_name <span class='caret'></span></a>";
+				} else {
+				echo "<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Dropdown <span class='caret'></span></a>";
+			}
+?>
+           		<ul class="dropdown-menu" role="menu">
               
-<?php 
-// Display links based upon the login status:
-if (isset($_SESSION['user_id'])) {
-	$first_name = $_SESSION['first_name'];
-		
-        echo	"<li class='dropdown'>
-                <a href='#' class='dropdown-toggle' data-toggle='dropdown'>$first_name <b class='caret'></b></a>
-                <ul class='dropdown-menu'>
-					<li><a href='../hero/change_password.php'>Change Password</a></li>
-                  <li><a href='../hero/logout.php'>Logout</a></li>
-                  <li><a href='#'>Something</a></li>
-                  <li class='divider'></li>
-                  <li class='nav-header'>Nav header</li>
-                  <li><a href='#'>Separated link</a></li>
-                  <li><a href='#'>One more separated link</a></li>
-                </ul>
-              </li>";
-				  
-} else {
-        echo	"<li class='dropdown'>
-                <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Login <b class='caret'></b></a>
-                <ul class='dropdown-menu'>
-					<li><a href='../hero/login.php'>Login</a></li>
-                  <li><a href='../hero/forgot_password.php'>Forgot Password</a></li>
-                  <li><a href='../hero/register.php'>Register an Account</a></li>
-                  <li class='divider'></li>
-                  <li class='nav-header'>Nav header</li>
-                  <li><a href='../hero/password.php'>Change Password - No Login</a></li>
-                  <li><a href='#'>One more separated link</a></li>
-                </ul>
-              </li>";
-}
-?>				  
-			  
-            </ul>
-            <form class="navbar-form pull-right">
-              <input class="span2" type="text" placeholder="Email">
-              <input class="span2" type="password" placeholder="Password">
-              <button type="submit" class="btn">Sign in</button>
-            </form>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+<?php  
+			if (isset($_SESSION['user_id'])) {
+				$first_name = $_SESSION['first_name'];     
+				echo "<li><a href='../hero/logout.php'>Logout</a></li>";       
+                echo "<li><a href='../hero/change_password.php'>Change Password</a></li>";
+                echo "<li><a href='../hero/delete.php'>Delete Account</a></li>";
+            } else {
+            	echo "<li><a href='../hero/login.php'>Login</a></li>";
+            	echo "<li><a href='../hero/register.php'>Create Free Account</a></li>";
+            	echo "<li class='divider'></li>";
+            	echo "<li class='dropdown-header'>More cool stuff</li>";
+            	echo "<li><a href='../hero/forgot_password.php'>No Login Forgot Password</a></li>";
+            	echo "<li><a href='../hero/password.php'>No Login Change Password</a></li>";
+            }
+?>
+ 
+              </ul><!--/dropdown-menu -->
+            </li>
+            
+          </ul> <!--/navbar-nav --> 
+                  
+     	<ul class="nav navbar-nav navbar-right">
+
+<?php  
+			if (isset($_SESSION['user_id'])) {
+				$first_name = $_SESSION['first_name']; 
+
+?>        
+          <form class="navbar-form navbar-right" action="../hero/logout.php" method="post"> 
+			
+            <button class="btn btn-success" type="submit">Sign Out</button> 
+            <input  type="hidden" name="submitted" value="TRUE" /> 
+          </form> 
+<?php } else { ?>                     
+  
+          <form class="navbar-form navbar-right" action="../hero/login.php" method="post"> 
+			
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control" name="pass">
+            </div>
+
+            <button class="btn btn-success" type="submit">Sign in</button> 
+            <input  type="hidden" name="submitted" value="TRUE" /> 
+          </form>
+<?php } ?>   
+		</ul>    <!--/.navbar-right -->                  
+        </div><!--/.navbar-collapse -->
+      </div><!--container -->
+    </nav>

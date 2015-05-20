@@ -2,12 +2,14 @@
 // This page activates the user's account.
 ob_start();
 session_start();
-include('header.html');
+include('../hero/header.php');
 ?>
     <div class="container">
 <?php # activate.php
-require_once ('config.inc.php'); 
-
+require_once ('../hero/config.inc.php'); 
+// a space line
+echo "<br>";
+// Validate $_GET['x'] and $_GET['y']:
 $x = $y = FALSE;
 if (isset($_GET['x']) && preg_match ('/^[\w.-]+@[\w.-]+\.[A-Za-z]{2,6}$/', $_GET['x']) ) {
 	$x = $_GET['x'];
@@ -16,19 +18,26 @@ if (isset($_GET['y']) && (strlen($_GET['y']) == 32 ) ) {
 	$y = $_GET['y'];
 }
 
+// If $x and $y aren't correct, redirect the user.
 if ($x && $y) {
 
+	// Update the database...
 	require_once ('../mysqli_connect.php'); 
-	$q = "UPDATE users SET active=NULL WHERE (email='" . mysql_real_escape_string($x) . "' AND active='" . mysql_real_escape_string($y) . "') LIMIT 1";
-	$r = mysql_query ($q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysql_error($dbc));
+	//$q = "UPDATE users SET active=NULL WHERE (email='" . mysql_real_escape_string($x) . "' AND active='" . mysql_real_escape_string($y) . "') LIMIT 1";
 	
-	if (mysql_affected_rows($dbc) == 1) {
-		echo "<h2>Your account is now active. You may now log in.</h2>";
+	
+	// Print a customized message:
+	if ( $stmt = mysqli_prepare($dbc, "UPDATE users SET active=NULL WHERE (email=? AND active=?) LIMIT 1") ) {
+		$esc_x=mysqli_real_escape_string($dbc,$x);
+		$esc_y=mysqli_real_escape_string($dbc,$y);
+		mysqli_stmt_bind_param( $stmt, "ss", $esc_x,$esc_y );
+		mysqli_stmt_execute($stmt);	
+		echo "<div class='alert alert-success'><h2>Your account is now active. You may now log in.</h2></div>";
 	} else {
-		echo '<p class="error">Your account could not be activated. Please re-check the link or contact the system administrator.</font></p>'; 
+		echo "<div class='alert alert-danger'><p class='error'>Your account could not be activated. Please re-check the link or contact the system administrator.</font></p></div>"; 
 	}
 
-	mysql_close($dbc);
+	mysqli_close($dbc);
 
 } else { // Redirect.
 
@@ -37,37 +46,30 @@ if ($x && $y) {
 	header("Location: $url");
 	exit(); // Quit the script.
 
-} 
+} // End of main IF-ELSE.
 
 ?>
+	<div class="container">
     <div class="row">
-		<div class="span12">
-		<h2>Activate Account to egretTV.org</h2>
+		<div class="col-md-12">
+		<h2>Activate Account to egret.tv</h2>
 		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 		</div>
 	</div>
+	</div>
+	<hr>
       <footer>
-        <p>&copy; egretTV.org 2013</p>
+        <p>&copy; egret.tv 2013</p>
       </footer>
 
     </div> <!-- /container -->
 
-    <script src="../scripts/js/jquery-1.10.1.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.js"></script>
-    <!-- 
-    <script src="../bootstrap/js/bootstrap-transition.js"></script>
-    <script src="../bootstrap/js/bootstrap-alert.js"></script>
-    <script src="../bootstrap/js/bootstrap-modal.js"></script>
-    <script src="../bootstrap/js/bootstrap-dropdown.js"></script>
-    <script src="../bootstrap/js/bootstrap-scrollspy.js"></script>
-    <script src="../bootstrap/js/bootstrap-tab.js"></script>
-    <script src="../bootstrap/js/bootstrap-tooltip.js"></script>
-    <script src="../bootstrap/js/bootstrap-popover.js"></script>
-    <script src="../bootstrap/js/bootstrap-button.js"></script>
-    <script src="../bootstrap/js/bootstrap-collapse.js"></script>
-    <script src="../bootstrap/js/bootstrap-carousel.js"></script>
-    <script src="../bootstrap/js/bootstrap-typeahead.js"></script>
-    -->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+ 
   </body>
 </html>
 

@@ -14,12 +14,12 @@
 // Flag variable for site status:
 define('LIVE', FALSE);
 // Admin contact address:
-define('EMAIL', 'david_petersen@egrettv.org');
+define('EMAIL', 'davestorkman@egret.tv');
 // Site URL (base for all redirections):
-define ('BASE_URL', 'http://egrettv.org/');
+define ('BASE_URL', 'http://egret.tv/');
 
 // Location of the MySQL connection script:
-define ('MYSQL', 'http://www.egrettv.org/mysqli_connect.php');
+define ('MYSQL', 'http://www.egret.tv/mysqli_connect.php');
 
 // Adjust the time zone for PHP 5.1 and greater:
 // date_default_timezone_set ('US/Eastern');
@@ -50,7 +50,7 @@ function my_error_handler ($e_number, $e_message, $e_file, $e_line, $e_vars) {
 	} else { // Don't show the error:
 	
 		// Send an email to the admin:
-		mail(EMAIL, $message, 'From: davidpetersen@egrettv.org');
+		mail(EMAIL, $message, 'From: davestorkman@egret.tv');
 		
 		// Only print an error message if the error isn't a notice:
 		if ($e_number != E_NOTICE) {

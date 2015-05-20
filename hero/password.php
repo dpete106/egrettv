@@ -1,21 +1,24 @@
 <?php # password.php
-// This page lets a user change their password.
+// This page lets a user change their password without logging in.
 
 //$page_title = 'egret bird Change Password';
 //$page_desc = 'egretTV is about egret and heron birds in their natural habitat of Connecticut&#39;s Long Island Sound ecosystem, dedicated to protection of the environment';
 ob_start();
 session_start();
-include('header.html');
+include('header.php');
+require_once ('config.inc.php'); 
+include_once( 'class.php' );
 
 ?>
     <div class="container">
 
 <?php # login.php
-
+// a space line
+echo "<br>";
 // Check if the form has been submitted:
 if (isset($_POST['submitted'])) {
 
-	require_once ('../mysqli_connect.php'); // Connect to the db.
+	
 		
 	$errors = array(); // Initialize an error array.
 	
@@ -23,24 +26,31 @@ if (isset($_POST['submitted'])) {
 	if (empty($_POST['email'])) {
 		$errors[] = 'You forgot to enter your email address.';
 	} else {
-		$e = trim($_POST['email']);
+		
+		$esc_email = stripslashes( strip_tags( $_POST['email'] ) );
 	}
 	
 	// Check for the current password:
 	if (empty($_POST['pass'])) {
 		$errors[] = 'You forgot to enter your current password.';
 	} else {
-//		$p = trim($_POST['pass']);
-$p = mysql_real_escape_string(trim($_POST['pass']));
+
+		
+		$p = stripslashes( strip_tags( $_POST['pass'] ) );
 	}
 
 	// Check for a new password and match 
 	// against the confirmed password:
-	if (!empty($_POST['pass1'])) {
-		if ($_POST['pass1'] != $_POST['pass2']) {
+	if (!empty($_POST['password1'])) {
+		if ($_POST['password1'] != $_POST['password2']) {
 			$errors[] = 'Your new password did not match the confirmed password.';
 		} else {
-			$np = trim($_POST['pass1']);
+				if (preg_match ('/^(\w){4,20}$/', $_POST['password1']) ) {
+			
+					$np = stripslashes( strip_tags( $_POST['password1'] ) );
+				} else {
+					$errors[] = 'Please enter a valid password!';
+				}
 		}
 	} else {
 		$errors[] = 'You forgot to enter your new password.';
@@ -48,20 +58,14 @@ $p = mysql_real_escape_string(trim($_POST['pass']));
 	
 	if (empty($errors)) { // If everything's OK.
 	
-		// Check that they've entered the right email address/password combination:
-		$q = "SELECT user_id FROM users WHERE (email='$e' AND pass=SHA1('$p') )";
-		$r = mysql_query($q);
-		$num = mysql_num_rows($r);
-		if ($num == 1) { // Match was made.
+	
+		$usr = new Users; 
+		$usr->storeFormValues( $_POST );	
 		
-			// Get the user_id:
-			$row = mysql_fetch_array($r, MYSQL_NUM);
-
-			// Make the UPDATE query:
-			$q = "UPDATE users SET pass=SHA1('$np') WHERE user_id=$row[0]";		
-			$r = mysql_query($q);
-			
-			if (mysql_affected_rows($dbc) == 1) { // If it ran OK.
+		if( $usr->userEmail() ) { // user found
+		
+			$p = $usr->password1;
+			if (  $usr->userForgot($p)  ) { // If it ran OK.
 			
 				// Print a message.
 				echo '<div class="alert alert-success"><b>Thank you!</b> Your password has been updated.</div>';
@@ -72,23 +76,17 @@ $p = mysql_real_escape_string(trim($_POST['pass']));
 				echo '<h2>System Error</h2>
 				<div class="alert alert-danger">Your password could not be changed due to a system error. We apologize for any inconvenience.</div>'; 
 				
-				// Debugging message:
-				echo '<p>' . mysql_error($dbc) . '<br /><br />Query: ' . $q . '</p>';
-				
+			
 			}
 
-			// Include the footer and quit the script (to not show the form).
-			//include ('includes/footer.html'); 
-			//exit();
-				
+		
 		} else { // Invalid email address/password combination.
 			echo '<div class="alert alert-danger">The email address and password do not match those on file.</div>';
 		}
 		
 	} else { // Report the errors.
 	
-		echo '<h2>Error!</h2>
-		<div class="alert alert-warning">The following error(s) occurred:</div>';
+		echo '<div class="alert alert-warning">The following error(s) occurred:</div>';
 		foreach ($errors as $msg) { // Print each error.
 			echo "<div class='alert alert-warning'>$msg</div>";
 		}
@@ -96,82 +94,71 @@ $p = mysql_real_escape_string(trim($_POST['pass']));
 		
 	} // End of if (empty($errors)) IF.
 
-	mysql_close($dbc); // Close the database connection.
-		
 } // End of the main Submit conditional.
 ?>
 
     <div class="row">
-		<div class="span12">
-		<h2>Change your egretTV password without having to login</h2>
+		<div class="col-md-12">
+		<h2>Change your egret.tv password without having to login</h2>
 		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-		</div>
-	</div>
+
 	
 
-		<form class="form-horizontal" action="password.php" method="post">
-		<div class="control-group">
-		<label class="control-label" for="inputEmail">Email Address:</label>
-		<div class="controls">
+		<form class="form-signin" action="password.php" method="post">
+		
+		<div class="form-group">
+		<label for="inputEmail">Email Address:</label>
 		<input type="text" id="inputEmail" placeholder="Email" name="email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>">
 		</div>
-		</div>
-		<div class="control-group">
-		<label class="control-label" for="inputPassword">Current Password:</label>
-		<div class="controls">
+		
+		<div class="form-group">
+		<label for="inputPassword">Current Password:</label>
 		<input type="password" id="inputPassword" placeholder="Password" name="pass">
 		</div>
-		</div>
-		<div class="control-group">
-		<label class="control-label" for="inputnewPassword">New Password:</label>
-		<div class="controls">
-		<input type="password" id="inputnewPassword" placeholder="NewPassword" name="pass1">
+		
+		<div class="form-group">
+		<label for="inputnewPassword">New Password:</label>
+		<input type="password" id="inputnewPassword" placeholder="NewPassword" name="password1">
 		<p>Use only letters, numbers, and the underscore. Must be between 4 and 20 characters long.</p>
 		</div>
+		
+		<div class="form-group">
+		<label for="inputConPassword">Confirm New Password:</label>
+		<input type="password" id="inputConPassword" placeholder="ConPassword" name="password2">
 		</div>
-		<div class="control-group">
-		<label class="control-label" for="inputConPassword">Confirm New Password:</label>
-		<div class="controls">
-		<input type="password" id="inputConPassword" placeholder="ConPassword" name="pass2">
-		</div>
-		</div>
-		<div class="control-group">
-		<div class="controls">
-		<label class="checkbox">
+		
+		<div class="checkbox">
+		<label>
 			<input type="checkbox"> Remember me
 		</label>
-		<input type="submit" name="submit" value="Change Password"/>
 		</div>
+		
+		<div class="form-group">
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Reset My Password</button>
+		<!-- <input type="submit" name="submit" value="Change Password"/> -->
 		<input type="hidden" name="submitted" value="TRUE" />
 		</div>
-	</form>
+		
+		</form>
+
+	</div>
+	</div>
+	
       <hr>
-
       <footer>
-        <p>&copy; egretTV.org 2015</p>
+        <p>&copy; egret.tv 2015</p>
       </footer>
-
+		
+	
     </div> <!-- /container -->
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../scripts/js/jquery-1.10.1.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.js"></script>
-    <!-- 
-    <script src="../bootstrap/js/bootstrap-transition.js"></script>
-    <script src="../bootstrap/js/bootstrap-alert.js"></script>
-    <script src="../bootstrap/js/bootstrap-modal.js"></script>
-    <script src="../bootstrap/js/bootstrap-dropdown.js"></script>
-    <script src="../bootstrap/js/bootstrap-scrollspy.js"></script>
-    <script src="../bootstrap/js/bootstrap-tab.js"></script>
-    <script src="../bootstrap/js/bootstrap-tooltip.js"></script>
-    <script src="../bootstrap/js/bootstrap-popover.js"></script>
-    <script src="../bootstrap/js/bootstrap-button.js"></script>
-    <script src="../bootstrap/js/bootstrap-collapse.js"></script>
-    <script src="../bootstrap/js/bootstrap-carousel.js"></script>
-    <script src="../bootstrap/js/bootstrap-typeahead.js"></script>
-    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+    
+ 
   </body>
 </html>
 

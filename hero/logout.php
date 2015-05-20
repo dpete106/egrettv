@@ -2,7 +2,7 @@
 // This is the logout page for the site.
 ob_start();
 session_start();
-
+echo session_id();
 require_once ('config.inc.php'); 
 
 // If no first_name session variable exists, redirect the user:
@@ -29,4 +29,4 @@ echo '<h3>You are now logged out of egretTV.</h3>';
 ob_end_flush();
 
 ?>
-?>
+

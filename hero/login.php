@@ -14,12 +14,16 @@ include('header.php');
 
 
 require_once ('config.inc.php'); 
+include_once( 'class.php' );
+
+
 
 if (isset($_POST['submitted'])) {
-	require_once ('../mysqli_connect.php'); 	
+		
 	// Validate the email address:
 	if (!empty($_POST['email'])) {
-		$e = mysql_real_escape_string ($_POST['email']);
+		$e = stripslashes( strip_tags( $_POST['email'] ) );
+		
 	} else {
 		$e = FALSE;
 		echo '<div class="alert alert-warning">You forgot to enter your email address!</div>';
@@ -28,7 +32,7 @@ if (isset($_POST['submitted'])) {
 	
 	// Validate the password:
 	if (!empty($_POST['pass'])) {
-		$p = mysql_real_escape_string ($_POST['pass']);
+		$p = stripslashes( strip_tags( $_POST['pass'] ) );
 	} else {
 		$p = FALSE;
 		echo '<div class="alert alert-warning">You forgot to enter your password!</div>';
@@ -36,75 +40,39 @@ if (isset($_POST['submitted'])) {
 	}
 	
 	if ($e && $p) { // If everything's OK.
-	
+		$usr = new Users; 
+		$usr->storeFormValues( $_POST );	
+//echo "pass1 " . hash("sha1", $usr->pass) . "<br>";
+//echo "pass2 " . $usr->pass;
 		// Query the database:
-		$q = "SELECT user_id, first_name, user_level FROM users WHERE (email='$e' AND pass=SHA1('$p')) AND active IS NULL";		
-		$r = mysql_query ($q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysql_error($dbc));
-		
-		if (@mysql_num_rows($r) == 1) { // A match was made.
-
-			// Register the values & redirect:
-			$_SESSION = mysql_fetch_array ($r, MYSQL_ASSOC); 
-
-			mysql_free_result($r);
-			//mysql_close($dbc);
-							
+		if( $usr->userLogin() ) {
 			$url = BASE_URL . 'index.php'; // Define the URL:
-               // $url = 'http://www.egrettv.org/index.php'; // Define the URL:
+               
 			//ob_end_clean(); // Delete the buffer.
 			
-			//header("Location: $url");
+			header("Location: $url");
 			
-			//exit(); // Quit the script.
-			
-			echo '<div class="alert alert-danger">logged in</div>';
-				
+			exit(); // Quit the script.
 		} else { // No match was made.
 			echo '<div class="alert alert-danger">Either the email address and password entered do not match those on file or you have not yet activated your account.</div>';
-			//echo '<p>Either the email address and password entered do not match those on file or you have not yet activated your account.</p>';
+			
 		}
 		
 	} else { // If everything wasn't OK.
 		echo '<div class="alert alert-danger">Please try again.</div>';
-		//echo '<p>Please try again.</p>';
+		
 	}
-	
-	mysql_close($dbc);
-
 } // End of SUBMIT conditional.
 ?>
-
+	<div class="container">
     <div class="row">
-		<div class="span12">
+		<div class="col-md-12">
 		<h2>Login to egretTV.org</h2>
 		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 		</div>
 	</div>
+	</div>
 
-
-	<form class="form-horizontal" action="login.php" method="post">
-		<div class="control-group">
-		<label class="control-label" for="inputEmail">Email</label>
-		<div class="controls">
-		<input type="text" id="inputEmail" placeholder="Email" name="email">
-		</div>
-		</div>
-		<div class="control-group">
-		<label class="control-label" for="inputPassword">Password</label>
-		<div class="controls">
-		<input type="password" id="inputPassword" placeholder="Password" name="pass">
-		</div>
-		</div>
-		<div class="control-group">
-		<div class="controls">
-		<label class="checkbox">
-			<input type="checkbox"> Remember me
-		</label>
-		<input type="submit" name="submit" value="Sign In"/>
-		</div>
-		<input type="hidden" name="submitted" value="TRUE" />
-		</div>
-	</form>
       <hr>
 
       <footer>
@@ -116,27 +84,13 @@ if (isset($_POST['submitted'])) {
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../scripts/js/jquery-1.10.1.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.js"></script>
-    <!-- 
-    <script src="../bootstrap/js/bootstrap-transition.js"></script>
-    <script src="../bootstrap/js/bootstrap-alert.js"></script>
-    <script src="../bootstrap/js/bootstrap-modal.js"></script>
-    <script src="../bootstrap/js/bootstrap-dropdown.js"></script>
-    <script src="../bootstrap/js/bootstrap-scrollspy.js"></script>
-    <script src="../bootstrap/js/bootstrap-tab.js"></script>
-    <script src="../bootstrap/js/bootstrap-tooltip.js"></script>
-    <script src="../bootstrap/js/bootstrap-popover.js"></script>
-    <script src="../bootstrap/js/bootstrap-button.js"></script>
-    <script src="../bootstrap/js/bootstrap-collapse.js"></script>
-    <script src="../bootstrap/js/bootstrap-carousel.js"></script>
-    <script src="../bootstrap/js/bootstrap-typeahead.js"></script>
-    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
   </body>
 </html>
 
 <?php
-echo session_id();
+//echo session_id();
 ob_end_flush();
 
 ?>
