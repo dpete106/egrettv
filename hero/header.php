@@ -74,11 +74,12 @@ if ($page == "webcam" ){
         </div><!--/.navbar-header -->  
 
 		<div id="navbar" class="navbar-collapse collapse">          
-			<ul class="nav navbar-nav">
+		<ul class="nav navbar-nav">
             	<li class="active"><a class="navbar-brand"  href="../index.php">Home</a></li>
             	<li><a class="navbar-brand"  href="../hero/connect.php">Connect</a></li>
             	<li><a class="navbar-brand"  href="../hero/webcam.php">Webcam</a></li>
-                    
+        </ul> <!--/navbar-nav --> 
+		<ul class="nav navbar-nav">
             	<li class="dropdown">
             
 <?php  
@@ -112,9 +113,8 @@ if ($page == "webcam" ){
             
           </ul> <!--/navbar-nav --> 
                   
-     	<ul class="nav navbar-nav navbar-right">
-
-<?php  
+     	<!-- <ul class="nav navbar-nav navbar-right"> -->
+ <?php  
 			if (isset($_SESSION['user_id'])) {
 				$first_name = $_SESSION['first_name']; 
 
@@ -139,7 +139,7 @@ if ($page == "webcam" ){
             <input  type="hidden" name="submitted" value="TRUE" /> 
           </form>
 <?php } ?>   
-		</ul>    <!--/.navbar-right -->                  
+		    <!--</ul> -->                  
         </div><!--/.navbar-collapse -->
       </div><!--container -->
     </nav>
