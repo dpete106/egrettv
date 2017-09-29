@@ -4,7 +4,7 @@
 ob_start();
 session_start();
 
-include('header.php');
+include('header_test.php');
 require_once ('config.inc.php'); 
 include_once( 'class.php' );
 
@@ -20,6 +20,7 @@ $number = $slot[0] . $slot[1] . $slot[2];
 // echo $number;
 return $number;
 }
+echo '<div class="jumbotron">';
 
 if (isset($_POST['submitted'])) { // Handle the form.
 
@@ -93,7 +94,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
 			// Add the user to the database:
 			
 			
-			if (  $usr->userRegister()  ) { // If it ran OK.
+			if (  $usr->userRegister($a)  ) { // If it ran OK.
 			
 				$encrypt = SHA1($p);
 
@@ -123,7 +124,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
 			}
 			
 		} else { // The email address is not available.
-			echo '<div class="alert alert-warning">That email address has already been registered. If you have forgotten your password, use the link at right to have your password sent to you.</div>';
+			echo '<div class="alert alert-warning">That email address has already been registered. If you have forgotten your password, use the link above to have your password sent to you.</div>';
 			
 		}
 		
@@ -131,7 +132,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
 		echo '<div class="alert alert-danger">Please re-enter your passwords and try again.</div>';
 		
 	}
-        $_SESSION['rand_number'] = slotnumber();
+    $_SESSION['rand_number'] = slotnumber();
 	
 
 } // End of the main Submit conditional.
@@ -141,7 +142,6 @@ else {
   }
 
 ?>
-<div class="container">
 
     <div class="row">
 		<div class="col-md-12">
@@ -149,38 +149,38 @@ else {
 		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 
 
-	<form class="form-signin" action="register.php" method="post">
+	<form class="form-signin" action="../hero/register.php" method="post">
 		<div class="form-group">
-		<label for="inputFirstName">First Name:</label>
-		<input type="text" id="inputFirstName" placeholder="FirstName" name="first_name" value="<?php if (isset($trimmed['first_name'])) echo $trimmed['first_name']; ?>">
+		<!--<label for="inputFirstName">First Name:</label>-->
+		<input type="text" class="form-control"  id="inputFirstName" placeholder="FirstName" name="first_name" value="<?php if (isset($trimmed['first_name'])) echo $trimmed['first_name']; ?>">
 		</div>
 		
 		<div class="form-group">
-		<label for="inputLastName">Last Name:</label>
-		<input type="text" id="inputLastName" placeholder="LastName" name="last_name" value="<?php if (isset($trimmed['last_name'])) echo $trimmed['last_name']; ?>">
+		<!--<label for="inputLastName">Last Name:</label>-->
+		<input type="text" class="form-control"  id="inputLastName" placeholder="LastName" name="last_name" value="<?php if (isset($trimmed['last_name'])) echo $trimmed['last_name']; ?>">
 		</div>
 		
 		<div class="form-group">
-		<label for="inputEmail">Email Address:</label>
-		<input type="text" id="inputEmail" placeholder="Email" name="email" value="<?php if (isset($trimmed['email'])) echo $trimmed['email']; ?>">
+		<!--<label for="inputEmail">Email Address:</label>-->
+		<input type="email" class="form-control"  id="inputEmail" placeholder="Email" name="email" value="<?php if (isset($trimmed['email'])) echo $trimmed['email']; ?>">
 		</div>
 		
 		<div class="form-group">
-		<label for="inputPassword">Password:</label>
-		<input type="password" id="inputPassword" placeholder="Password" name="password1">
+		<!--<label for="inputPassword">Password:</label>-->
+		<input type="password" class="form-control"  id="inputPassword" placeholder="Password" name="password1">
 		<p>Use only letters, numbers, and the underscore. Must be between 4 and 20 characters long.</p>
 		</div>
 		
 		<div class="form-group">
-		<label class="sr-label" for="inputConPassword">Confirm Password:</label>
-		<input type="password" id="inputConPassword" placeholder="ConPassword" name="password2">
+		<!--<label class="sr-label" for="inputConPassword">Confirm Password:</label>-->
+		<input type="password" class="form-control"  id="inputConPassword" placeholder="ConfirmPassword" name="password2">
 		</div>
 		
 		<div class="form-group">
 		<?php echo $_SESSION['rand_number']; ?>
 		
 		<label for="inputNumbers">Enter these numbers </label>
-		<input type="text" id="inputNumbers" placeholder="Numbers" name="numbers">
+		<input type="text"  class="form-control" id="inputNumbers" placeholder="Numbers" name="numbers">
 		<p>To prevent spam please enter the 3 numbers displayed above and to the left.</p>
 		</div>
 		
@@ -198,20 +198,19 @@ else {
 	</form>
 
 
-	</div>
+		</div>
 	</div> <!-- row -->
+    </div> <!-- jumbotron -->
+	
       <hr>
       <footer>
-        <p>&copy; egret.tv 2015</p>
+       <?php
+		include('footer.php');
+		?>
       </footer>
 
     </div> <!-- container -->
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
  
   </body>
 </html>

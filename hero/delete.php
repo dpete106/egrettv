@@ -4,7 +4,7 @@
 ob_start(); // output stored in internal buffer
 session_start();
 
-include('header.php');
+include('header_test.php');
 require_once ('config.inc.php');
 include_once( 'class.php' );
 
@@ -19,6 +19,8 @@ if (!isset($_SESSION['first_name'])) {
 	exit(); // Quit the script.
 	
 }
+echo '<div class="jumbotron">';
+
 // a space line
 echo "<br>";
 
@@ -63,7 +65,6 @@ if (isset($_POST['submitted'])) {
 } // End of the main Submit conditional.
 
 ?>
-    <div class="container">
 
     <div class="row">
 		<div class="col-md-12">
@@ -86,18 +87,15 @@ if (isset($_POST['submitted'])) {
 
 	</div>
 	</div>
+    </div> <!-- /jumbotron -->
 
       <footer>
-        <p>&copy; egret.tv 2015</p>
+       <?php
+		include('footer.php');
+		?>
       </footer>
-
     </div> <!-- /container -->
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 
   </body>
 </html>

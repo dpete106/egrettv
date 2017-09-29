@@ -2,10 +2,10 @@
 class database{
 	
 	static public function connect(){
-		$db_host = "egrettvorg.ipagemysql.com";
+		$db_host = "localhost";
 		$db_name = 'egrettv';
-		$db_user = "egrettvorg";
-		$db_pass = 'Q$a6z5w7';
+		$db_user = "root";
+		$db_pass = '';
 		$con = new PDO( "mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass );
 		$con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 		return $con;
@@ -41,7 +41,7 @@ try{
 
 $con = database::connect();
 		
-$sql = "SELECT * FROM users WHERE email = :email AND pass = :pass LIMIT 1";
+$sql = "SELECT * FROM users WHERE email = :email AND pass = :pass AND active IS NULL LIMIT 1";
 
 // stops sql injection
 $stmt = $con->prepare( $sql );
@@ -90,9 +90,7 @@ return $success;
 }
 }
 
-public function userRegister() {
-// Create the activation code:
-$active = md5(uniqid(rand(), true));
+public function userRegister($active) {
 
 $success = false;
 try{
@@ -145,6 +143,38 @@ return $success;
 }
 }
 
+public function userActivate($e, $active) { 
+
+$success = false;
+try{
+$con = database::connect();
+
+$sql = "UPDATE users SET active=NULL WHERE (email=:email AND active=:active) LIMIT 1";
+//$sql = "SELECT * FROm users WHERE (email=:email AND active=:active) LIMIT 1";
+
+
+$stmt = $con->prepare( $sql );
+
+$stmt->bindValue( "email", $e, PDO::PARAM_STR );
+$stmt->bindValue( "active", $active, PDO::PARAM_STR );
+
+$stmt->execute();
+
+//$valid = $stmt->fetch(PDO::FETCH_ASSOC);
+
+//if( $valid ) {
+
+$success = true;
+//}
+
+$con = null;
+return $success;
+}catch (PDOException $e) {
+echo $e->getMessage();
+return $success;
+}
+}
+
 public function userDelete() { 
 
 $success = false;
@@ -172,3 +202,4 @@ return $success;
 
 }
 ?>
+

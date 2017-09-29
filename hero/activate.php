@@ -2,11 +2,14 @@
 // This page activates the user's account.
 ob_start();
 session_start();
-include('../hero/header.php');
+include('header_test.php');
 ?>
     <div class="container">
 <?php # activate.php
-require_once ('../hero/config.inc.php'); 
+require_once ('config.inc.php'); 
+include_once( 'class.php' );
+
+echo '<div class="jumbotron">';
 // a space line
 echo "<br>";
 // Validate $_GET['x'] and $_GET['y']:
@@ -22,22 +25,25 @@ if (isset($_GET['y']) && (strlen($_GET['y']) == 32 ) ) {
 if ($x && $y) {
 
 	// Update the database...
-	require_once ('../mysqli_connect.php'); 
+	//require_once ('../mysqli_connect.php'); 
 	//$q = "UPDATE users SET active=NULL WHERE (email='" . mysql_real_escape_string($x) . "' AND active='" . mysql_real_escape_string($y) . "') LIMIT 1";
 	
 	
 	// Print a customized message:
-	if ( $stmt = mysqli_prepare($dbc, "UPDATE users SET active=NULL WHERE (email=? AND active=?) LIMIT 1") ) {
-		$esc_x=mysqli_real_escape_string($dbc,$x);
-		$esc_y=mysqli_real_escape_string($dbc,$y);
-		mysqli_stmt_bind_param( $stmt, "ss", $esc_x,$esc_y );
-		mysqli_stmt_execute($stmt);	
+	//if ( $stmt = mysqli_prepare($dbc, "UPDATE users SET active=NULL WHERE (email=? AND active=?) LIMIT 1") ) {
+	//	$esc_x=mysqli_real_escape_string($dbc,$x);
+	//	$esc_y=mysqli_real_escape_string($dbc,$y);
+	//	mysqli_stmt_bind_param( $stmt, "ss", $esc_x,$esc_y );
+	//	mysqli_stmt_execute($stmt);	
+	$usr = new Users; 
+	
+	if (  $usr->userActivate($x, $y)  ) { // If it ran OK.
 		echo "<div class='alert alert-success'><h2>Your account is now active. You may now log in.</h2></div>";
 	} else {
 		echo "<div class='alert alert-danger'><p class='error'>Your account could not be activated. Please re-check the link or contact the system administrator.</font></p></div>"; 
 	}
 
-	mysqli_close($dbc);
+	//mysqli_close($dbc);
 
 } else { // Redirect.
 
@@ -49,7 +55,6 @@ if ($x && $y) {
 } // End of main IF-ELSE.
 
 ?>
-	<div class="container">
     <div class="row">
 		<div class="col-md-12">
 		<h2>Activate Account to egret.tv</h2>
@@ -58,17 +63,15 @@ if ($x && $y) {
 	</div>
 	</div>
 	<hr>
+	
       <footer>
-        <p>&copy; egret.tv 2013</p>
+       <?php
+		include('footer.php');
+		?>
       </footer>
 
     </div> <!-- /container -->
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
  
   </body>
 </html>

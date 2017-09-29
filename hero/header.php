@@ -40,27 +40,24 @@ if ($page == "webcam" ){
 
 	
     <title>Jumbotron Template for Bootstrap</title>
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<script src="http://localhost/egrettv/bootstrap-4-dist/js/bootstrap.min.js"></script>
 
     <!-- Bootstrap core CSS -->
-    <link href="../bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost/egrettv/bootstrap-4-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/jumbotron.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="http://localhost/egrettv/css/jumbotron.css" rel="stylesheet">
+    <link href="http://localhost/egrettv/css/style.css" rel="stylesheet">
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <!--<script src="../../assets/js/ie-emulation-modes-warning.js"></script>-->
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body>
-<?php include_once("analyticstracking.php") ?>
+<?php include_once("./hero/analyticstracking.php") ?>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -70,14 +67,14 @@ if ($page == "webcam" ){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="../blog/index.php">Video blog</a>
+            <a class="navbar-brand" href="/egrettv/blog/index.php">Video blog</a>
         </div><!--/.navbar-header -->  
 
 		<div id="navbar" class="navbar-collapse collapse">          
 		<ul class="nav navbar-nav">
-            	<li class="active"><a class="navbar-brand"  href="../index.php">Home</a></li>
-            	<li><a class="navbar-brand"  href="../hero/connect.php">Connect</a></li>
-            	<li><a class="navbar-brand"  href="../hero/webcam.php">Webcam</a></li>
+            	<li class="active"><a class="navbar-brand"  href="/egrettv/index.php">Home</a></li>
+            	<li><a class="navbar-brand"  href="/egrettv/hero/connect.php">Connect</a></li>
+            	<li><a class="navbar-brand"  href="/egrettv/hero/webcam.php">Rent the House</a></li>
         </ul> <!--/navbar-nav --> 
 		<ul class="nav navbar-nav">
             	<li class="dropdown">
@@ -95,16 +92,16 @@ if ($page == "webcam" ){
 <?php  
 			if (isset($_SESSION['user_id'])) {
 				$first_name = $_SESSION['first_name'];     
-				echo "<li><a href='../hero/logout.php'>Logout</a></li>";       
-                echo "<li><a href='../hero/change_password.php'>Change Password</a></li>";
-                echo "<li><a href='../hero/delete.php'>Delete Account</a></li>";
+				echo "<li><a href='/egrettv/hero/logout.php'>Logout</a></li>";       
+                echo "<li><a href='/egrettv/hero/change_password.php'>Change Password</a></li>";
+                echo "<li><a href='/egrettv/hero/delete.php'>Delete Account</a></li>";
             } else {
-            	echo "<li><a href='../hero/login.php'>Login</a></li>";
-            	echo "<li><a href='../hero/register.php'>Create Free Account</a></li>";
+            	echo "<li><a href='/egrettv/hero/login.php'>Login</a></li>";
+            	echo "<li><a href='/egrettv/hero/register.php'>Create Free Account</a></li>";
             	echo "<li class='divider'></li>";
             	echo "<li class='dropdown-header'>More cool stuff</li>";
-            	echo "<li><a href='../hero/forgot_password.php'>No Login Forgot Password</a></li>";
-            	echo "<li><a href='../hero/password.php'>No Login Change Password</a></li>";
+            	echo "<li><a href='/egrettv/hero/forgot_password.php'>No Login Forgot Password</a></li>";
+            	echo "<li><a href='/egrettv/hero/password.php'>No Login Change Password</a></li>";
             }
 ?>
  
@@ -119,14 +116,14 @@ if ($page == "webcam" ){
 				$first_name = $_SESSION['first_name']; 
 
 ?>        
-          <form class="navbar-form navbar-right" action="../hero/logout.php" method="post"> 
+          <form class="navbar-form navbar-right" action="/egrettv/hero/logout.php" method="post"> 
 			
             <button class="btn btn-success" type="submit">Sign Out</button> 
             <input  type="hidden" name="submitted" value="TRUE" /> 
           </form> 
 <?php } else { ?>                     
   
-          <form class="navbar-form navbar-right" action="../hero/login.php" method="post"> 
+          <form class="navbar-form navbar-right" action="/egrettv/hero/login.php" method="post"> 
 			
             <div class="form-group">
               <input type="text" placeholder="Email" class="form-control" name="email">

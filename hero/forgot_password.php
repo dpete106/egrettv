@@ -3,12 +3,13 @@
 
 ob_start();
 session_start();
-include('header.php');
+include('header_test.php');
 ?>
     <div class="container">
 <?php # forgot_password.php
 require_once ('config.inc.php'); 
 include_once( 'class.php' );
+echo '<div class="jumbotron">';
 
 if (isset($_POST['submitted'])) {
 	
@@ -107,19 +108,18 @@ if (isset($_POST['submitted'])) {
 	
     </div>  
 	</div>
+    </div> <!-- /jumbotron -->
+
 	<hr>
       <footer>
-        <p>&copy; egret.tv 2015</p>
+       <?php
+		include('footer.php');
+		?>
       </footer>
 		
 	
     </div> <!-- /container -->
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 
   </body>
 </html>

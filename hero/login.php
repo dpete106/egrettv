@@ -5,11 +5,11 @@ session_start();
 
 
 
-include('header.php');
+include('header_test.php');
 
 ?>
+	<div class="jumbotron">
 
-    <div class="container">
 <?php # login.php
 
 
@@ -46,13 +46,24 @@ if (isset($_POST['submitted'])) {
 //echo "pass2 " . $usr->pass;
 		// Query the database:
 		if( $usr->userLogin() ) {
+			//$localuser = $_SESSION['user_id'];
+			//echo "<script type='text/javascript'>";
+			//echo "function run(user){
+			//if (typeof(Storage) !== 'undefined') {
+			//	// Store
+			//	alert('hello world');
+			//	localStorage.setItem('localuser', user);
+			//	// Retrieve
+			//	document.getElementById('result').innerHTML = localStorage.getItem('localuser');
+			//	} 
+			//}";
+            //echo "run('$localuser')"; 
+			//echo "</script>";
 			$url = BASE_URL . 'index.php'; // Define the URL:
-               
-			//ob_end_clean(); // Delete the buffer.
-			
 			header("Location: $url");
-			
 			exit(); // Quit the script.
+			//echo '<div class="alert alert-success">You have successfully logged in to egret.tv!</div>';
+
 		} else { // No match was made.
 			echo '<div class="alert alert-danger">Either the email address and password entered do not match those on file or you have not yet activated your account.</div>';
 			
@@ -64,28 +75,37 @@ if (isset($_POST['submitted'])) {
 	}
 } // End of SUBMIT conditional.
 ?>
-	<div class="container">
     <div class="row">
 		<div class="col-md-12">
 		<h2>Login to egretTV.org</h2>
 		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 		</div>
+		<form class="form-signin" action="../hero/login.php" method="post"> 
+			
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control" name="pass">
+            </div>
+
+            <button class="btn btn-success" type="submit">Sign in</button> 
+            <input  type="hidden" name="submitted" value="TRUE" /> 
+        </form>
+
 	</div>
 	</div>
 
       <hr>
 
       <footer>
-        <p>&copy; egretTV.org 2015</p>
+       <?php
+		include('footer.php');
+		?>
       </footer>
 
     </div> <!-- /container -->
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
   </body>
 </html>
 

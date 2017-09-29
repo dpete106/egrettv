@@ -16,7 +16,8 @@ define('LIVE', FALSE);
 // Admin contact address:
 define('EMAIL', 'davestorkman@egret.tv');
 // Site URL (base for all redirections):
-define ('BASE_URL', 'http://egret.tv/');
+define ('BASE_URL', 'http://localhost/egrettv/');
+//define ('BASE_URL', 'http://www.egret.tv/');
 
 // Location of the MySQL connection script:
 define ('MYSQL', 'http://www.egret.tv/mysqli_connect.php');

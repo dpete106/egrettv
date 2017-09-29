@@ -10,7 +10,7 @@ require_once ('config.inc.php');
 include_once( 'class.php' );
 
 ?>
-    <div class="container">
+    <div class="jumbotron">
 
 <?php # login.php
 // a space line
@@ -104,7 +104,7 @@ if (isset($_POST['submitted'])) {
 
 	
 
-		<form class="form-signin" action="password.php" method="post">
+		<form class="form-signin" action="../hero/password.php" method="post"> 
 		
 		<div class="form-group">
 		<label for="inputEmail">Email Address:</label>
@@ -141,23 +141,20 @@ if (isset($_POST['submitted'])) {
 		
 		</form>
 
+		</div>
 	</div>
-	</div>
+    </div> <!-- /jumbotron -->
 	
       <hr>
       <footer>
-        <p>&copy; egret.tv 2015</p>
+       <?php
+		include('footer.php');
+		?>
       </footer>
 		
 	
-    </div> <!-- /container -->
+</div> <!-- /container -->
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
-    
  
   </body>
 </html>
