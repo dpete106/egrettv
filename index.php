@@ -7,7 +7,7 @@ if (isset($_SESSION['user_id'])) {
 include('./hero/header_test.php');
 
 ?>
-<?php include_once("./hero/analyticstracking.php") ?>
+
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
 

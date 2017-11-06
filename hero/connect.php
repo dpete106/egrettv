@@ -5,7 +5,6 @@ include('./header_test.php');
 require_once ('config.inc.php'); 
 include_once( 'class.php' );
 
-include_once("./analyticstracking.php");
 ?>
 
 	<div class="jumbotron"><div class="module">

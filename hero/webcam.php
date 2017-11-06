@@ -4,7 +4,6 @@ session_start();
 include('./header_test.php');
 
 ?>
-<?php include_once("./analyticstracking.php") ?>
 
 	<div class="jumbotron"><div class="module">
 

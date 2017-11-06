@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <?php
+  <?php include_once("./hero/analyticstracking.php");
 /***************GET PAGE FROM URL***********************/
 $uri_array=explode("/", $_SERVER['REQUEST_URI']);
 $page = str_replace(".php", "", end($uri_array));
@@ -9,6 +9,7 @@ $page = str_replace(".php", "", end($uri_array));
 if ($page == "webcam" ){
     
 	echo "<meta charset='utf-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
     	<title>live bird cam web | egret.tv</title>
 		<link rel='icon' href='./favicon.ico' type='image/x-icon'/>    	
     	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
@@ -21,6 +22,7 @@ if ($page == "webcam" ){
 
     
 	echo "<meta charset='utf-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
     	<title>egret heron bird | egret.tv</title>
     	<link rel='icon' href='./favicon.ico' type='image/x-icon'/> 
     	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
@@ -30,16 +32,16 @@ if ($page == "webcam" ){
 	<meta name='keywords' content='egret heron bird '/>";
 }
 ?>	
-    <meta charset="utf-8">
+    <!-- <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- <link rel="icon" href="../../favicon.ico"> -->
+    <link rel="icon" href="../../favicon.ico"> -->
 
 	
-    <title>Jumbotron Template for Bootstrap</title>
+    <!-- <title>Jumbotron Template for Bootstrap</title> -->
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
