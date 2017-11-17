@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <?php include_once("./hero/analyticstracking.php");
+  <?php
+    include_once('./analyticstracking.php'); //analyticstracking.php in both directories
 /***************GET PAGE FROM URL***********************/
 $uri_array=explode("/", $_SERVER['REQUEST_URI']);
 $page = str_replace(".php", "", end($uri_array));
@@ -89,7 +90,7 @@ if ($page == "webcam" ){
 				$first_name = $_SESSION['first_name'];
 				echo '<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'. $first_name . '</a>';
 				} else {
-				echo '<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>';
+				echo '<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MyAccount</a>';
 			}
 ?>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
