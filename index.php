@@ -13,9 +13,18 @@ include('./hero/header_test.php');
 
     <div class="jumbotron"><div class="module">
 	    <div class="col-lg-12">
+		
+		<img src="/egrettv/images/egret_logo.png"  class="img-responsive"  style="position: relative;width: 100%;height: auto;">
+
 		<a href="https://twitter.com/storkman" class="twitter-follow-button" data-show-count="false">Follow @storkman</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+		
+		<div align="center" class="embed-responsive embed-responsive-16by9">
+		<video autoplay loop class="embed-responsive-item">
+        <source src="/egrettv/images/giphy.mp4" type="video/mp4">
+		</video>
+		</div>
+		
 		</div><br>
-      <img src="/egrettv/images/egret_logo.png"  class="img-responsive"  style="position: relative;width: 100%;height: auto;">
       
         
         <p class="lead"><em>If we don't get to know them, we're gonna lose them</em></p>
