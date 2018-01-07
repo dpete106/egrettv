@@ -7,7 +7,7 @@ include('./header_test.php');
 
 	<div class="jumbotron"><div class="module">
 
-	<h2>Rent the House on the Water</h2>
+	<h2>Long Island Sound Webcam</h2>
 	
     <div class="row marketing">
         <div class="col-lg-12">
@@ -21,14 +21,24 @@ include('./header_test.php');
 
 
 		</div>
-        <div class="col-lg-12">
+		
+        <!-- <div class="col-lg-12">
 		<h2>It's what living on the beach is all about</h2>
 		<h3>There's a natural progression from inside the living room, into the 3 season porch, step outside to the patio, over the seawall and down to the rocks and sand, and then back again.</h3>
 		<p>Connect to the Sound and your Work.  Academic Year, start August/September. Unique waterfront location on the Long Island Sound with spectacular views of the Thimble Islands. Connect to the environment in this authentic classic cottage with seamless indoor-outdoor living. 10 miles to Yale University. 2 miles to new brewery and train station with Shoreline East service to New Haven. Steps to swim. Short walk to private sandy beach. Quiet safe beach neighborhood.</p>
 		<h3>tweet when they eat!</h3>
 		<p>
 		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.egret.tv/hero/webcam.php" data-via="storkman" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a>
+		</div> -->
+		
+        <div class="col-lg-12">
+		<h2>It's what living on the beach is all about</h2>
+		<h3>There's a natural progression from inside the living room, into the 3 season porch, step outside to the patio, over the seawall and down to the rocks and sand, and then back again.</h3>
+		<h3>tweet when they eat!</h3>
+		<p>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.egret.tv/hero/webcam.php" data-via="storkman" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a>
 		</div>
+		
 	</div>
 
 

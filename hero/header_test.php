@@ -64,7 +64,7 @@ if ($page == "webcam" ){
 
 	<!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> -->
  	<nav class="navbar navbar-expand-md navbar-dark bg-dark"> 
-     <a class="navbar-brand" href="#">Navbar</a>
+     <a class="navbar-brand" href="#">egret.tv</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -76,7 +76,7 @@ if ($page == "webcam" ){
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/egrettv/hero/connect.php">Contact</a></li>
-            <a class="nav-link" href="/egrettv/hero/webcam.php">Rent the House</a></li>
+            <a class="nav-link" href="/egrettv/hero/webcam.php">Long Island Sound Cam</a></li>
          </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#">Disabled</a>
