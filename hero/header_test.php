@@ -27,22 +27,12 @@ if ($page == "webcam" ){
     	<title>egret heron bird | egret.tv</title>
     	<link rel='icon' href='./favicon.ico' type='image/x-icon'/> 
     	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    	<meta name='author' content='egrettv.org'>
+    	<meta name='author' content='egret.tv'>
 	<meta name='description' content='This is the egret heron bird website.  On this egret.tv live video cam birds you will see herons and egrets in their natural habitat in the Connecticut Long Island Sound ecosystem.'/> 
 	
 	<meta name='keywords' content='egret heron bird '/>";
 }
 ?>	
-    <!-- <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico"> -->
-
-	
-    <!-- <title>Jumbotron Template for Bootstrap</title> -->
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
