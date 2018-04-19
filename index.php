@@ -28,7 +28,7 @@ include('./hero/header_test.php');
       
         
         <p class="lead"><em>If we don't get to know them, we're gonna lose them</em></p>
-		<p class="lead"><em>Support egret.tv - Watch the Webcam!</em></p>
+		<p class="lead"><em>Support egret.tv - Watch the streaming webcam of the Long Island Sound!</em></p>
         <p><a class="btn btn-primary btn-lg" href="/egrettv/hero/webcam.php" role="button">Learn more &raquo;</a></p>
         
 
@@ -51,7 +51,7 @@ include('./hero/header_test.php');
        </div>
         <div class="col-lg-6">
           <h4>Action</h4>
-          <p>In social media egret.tv uses its publishing platform, content distribution, and social networking links as an integral part of the environmentalist community.</p>
+          <p>egret.tv hosts a streaming webcam of the Long Island Sound.  In social media egret.tv uses its publishing platform, content distribution, and social networking links as an integral part of the environmentalist community.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
           
           <img src="/egrettv/images/snegret.gif"  class="img-responsive"  >

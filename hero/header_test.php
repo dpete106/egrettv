@@ -11,26 +11,26 @@ if ($page == "webcam" ){
     
 	echo "<meta charset='utf-8'>
 		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    	<title>live bird cam web | egret.tv</title>
+    	<title>webcam long island sound | egret.tv</title>
 		<link rel='icon' href='./favicon.ico' type='image/x-icon'/>    	
     	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
     	<meta name='author' content='egret.tv'>
-	<meta name='description' content='This is a live video cam of egret birds.  On this egret.tv live video cam birds you will see herons and egrets in their natural habitat in the Connecticut Long Island Sound ecosystem.'/> 
+	<meta name='description' content='This is a streaming webcam of the Long Island Sound north shore.  On this egret.tv webcam you will see herons and egrets in their natural habitat in the Connecticut Long Island Sound ecosystem.'/> 
 	
-	<meta name='keywords' content='live video cam birds egret heron'/>";
+	<meta name='keywords' content='webcam long island sound'/>";
 
 }else {
 
     
 	echo "<meta charset='utf-8'>
 		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    	<title>egret heron bird | egret.tv</title>
+    	<title>webcam long island sound | egret.tv</title>
     	<link rel='icon' href='./favicon.ico' type='image/x-icon'/> 
     	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
     	<meta name='author' content='egret.tv'>
-	<meta name='description' content='This is the egret heron bird website.  On this egret.tv live video cam birds you will see herons and egrets in their natural habitat in the Connecticut Long Island Sound ecosystem.'/> 
+	<meta name='description' content='This is a streaming webcam of the Long Island Sound north shore.  On this egret.tv webcam you will see herons and egrets in their natural habitat in the Connecticut Long Island Sound ecosystem.'/> 
 	
-	<meta name='keywords' content='egret heron bird '/>";
+	<meta name='keywords' content='webcam long island sound'/>";
 }
 ?>	
 	
