@@ -1,8 +1,33 @@
+body {
+    background: #fff;
+    background-image: url(/egrettv/images/wave-background.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+header {
+}
+
+hr {
+    background-color: #00265f;
+    border: 0;
+    padding: 0;
+    margin-bottom: 10px;
+    height: 9px;
+}
+h1 {
+	color: darkblue;
+}
+.navbar {
+	background: rgba(0,123,255,.5);
+	margin-left: 125px; 
+	margin-right: 125px;
+}
 .form-signin {
 max-width: 390px;
 padding: 15px;
 margin: 0 auto;
 }
+
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -16,4 +41,10 @@ margin: 0 auto;
     left: 0;
     width: 100%;
     height: 100%;
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
