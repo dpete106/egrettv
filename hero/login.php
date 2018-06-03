@@ -8,7 +8,11 @@ session_start();
 include('header_test.php');
 
 ?>
-	<div class="jumbotron">
+<main role="main">
+
+    <div style="margin-left: 125px; margin-right: 125px;" class="jumbotron">
+		<h1>Login to egret.tv</h1>
+		<hr>
 
 <?php # login.php
 
@@ -75,36 +79,40 @@ if (isset($_POST['submitted'])) {
 	}
 } // End of SUBMIT conditional.
 ?>
-    <div class="row">
-		<div class="col-md-12">
-		<h2>Login to egretTV.org</h2>
-		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-		</div>
-		<form class="form-signin" action="../hero/login.php" method="post"> 
-			
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control" name="email">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control" name="pass">
-            </div>
+	<div class="container">
+			<form class="needs-validation" novalidate="" action="../hero/login.php" method="post">
+				<div class="row">
+					<div class="col-md-6 mb-3">
+					<label for="email">Email</label>
+					<input type="text" class="form-control" name="email" id="email" placeholder="" value="" required="">
+					<div class="invalid-feedback">
+						Valid email is required.
+					</div>
+					</div>	
 
-            <button class="btn btn-success" type="submit">Sign in</button> 
-            <input  type="hidden" name="submitted" value="TRUE" /> 
-        </form>
+					<div class="col-md-6 mb-3">
+					<label for="password">Password</label>
+					<input type="password" class="form-control" name="pass" id="password" placeholder="" value="" required="">
+					<div class="invalid-feedback">
+						Valid password is required.
+					</div>
+					</div>	
+				</div>
+				<div class="row">
+					<button class="btn btn-primary btn-lg btn-block" type="submit">Sign in</button>
+					<input  type="hidden" name="submitted" value="TRUE" /> 
+				</div>
+			</form>
 
-	</div>
-	</div>
-
-      <hr>
-
+    </div> <!-- /container -->
+	</div><!-- /jumbotron -->
+</main>
       <footer>
        <?php
 		include('footer.php');
 		?>
       </footer>
 
-    </div> <!-- /container -->
 
   </body>
 </html>
@@ -114,3 +122,25 @@ if (isset($_POST['submitted'])) {
 ob_end_flush();
 
 ?>
+<script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+</script>

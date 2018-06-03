@@ -19,11 +19,14 @@ if (!isset($_SESSION['first_name'])) {
 	exit(); // Quit the script.
 	
 }
-echo '<div class="jumbotron">';
+?>
+<main role="main">
 
-// a space line
-echo "<br>";
+    <div style="margin-left: 125px; margin-right: 125px;" class="jumbotron">
+		<h1>Change your current password</h1>
+		<hr>
 
+<?php # change_password.php
 if (isset($_POST['submitted'])) {
 					
 	// Check for a new password and match against the confirmed password:
@@ -70,52 +73,40 @@ if (isset($_POST['submitted'])) {
 
 ?>
 
-    <div class="row">
-		<div class="col-md-12">
-		<h2>Change your password</h2>
-		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-
-	<form class="form-signin" action="../hero/change_password.php" method="post"> 
+	<div class="container">
+		<form class="needs-validation" novalidate="" action="../hero/change_password.php" method="post">
+			<div class="row">
 		
-		<div class="form-group">
-		<label for="inputnewPassword">New Password:</label>
-		<input type="password" id="inputnewPassword" placeholder="NewPassword" name="password1" required autofocus>
-		<p>Use only letters, numbers, and the underscore. Must be between 4 and 20 characters long.</p>
-		</div>
+				<div class="col-md-6 mb-3">
+				<label for="inputnewPassword">New Password</label>
+				<input type="password" class="form-control" name="password1" id="inputnewPassword" placeholder="" value="" required="">
+				<div class="invalid-feedback">
+				Valid password is required.
+				</div>
+				<p>Use only letters, numbers, and the underscore. Must be between 4 and 20 characters long.</p>
+				</div>	
 		
-		<div class="form-group">
-		<label for="inputPassword">Password:</label>
-		<input type="password" id="inputPassword" placeholder="Password" name="password2" required autofocus>
-		</div>
-		
-		<div class="checkbox">
-		<label class="checkbox">
-			<input type="checkbox"> Remember me
-		</label>
-		</div>
-		
-		<div class="form-group">
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Change My Password</button>
-		<!--<input type="submit" name="submit" value="Change My Password"/> -->
-		
-		<input type="hidden" name="submitted" value="TRUE" />
-		</div>
-	</form>
-      <hr>
-
-		</div>
-	</div>
+				<div class="col-md-6 mb-3">
+				<label for="inputPassword">Confirm New Password</label>
+				<input type="password" class="form-control" name="password2" id="inputPassword" placeholder="" value="" required="">
+				<div class="invalid-feedback">
+				Valid password is required.
+				</div>
+				</div>	
+			</div> <!-- row -->
+			<button class="btn btn-primary btn-lg btn-block" type="submit">Change My Password</button>
+			<input type="hidden" name="submitted" value="TRUE" />
+		</form>
+    </div> <!-- /container -->
+	
     </div> <!-- /jumbotron -->
+</main>
 
       <footer>
        <?php
 		include('footer.php');
 		?>
       </footer>
-
-    </div> <!-- /container -->
-
-
   </body>
 </html>
 
@@ -124,3 +115,25 @@ if (isset($_POST['submitted'])) {
 ob_end_flush(); // send output buffer and turn off output buffering
 
 ?>
+<script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+</script>

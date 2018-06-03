@@ -19,10 +19,15 @@ if (!isset($_SESSION['first_name'])) {
 	exit(); // Quit the script.
 	
 }
-echo '<div class="jumbotron">';
+?>
+<main role="main">
 
-// a space line
-echo "<br>";
+    <div style="margin-left: 125px; margin-right: 125px;" class="jumbotron">
+		<h1>Delete your egret.tv account</h1>
+		<div class="alert alert-danger">Are you sure you want to delete your Account?</div>
+		<hr>
+
+<?php # delete.php
 
 if (isset($_POST['submitted'])) {
 		
@@ -66,35 +71,23 @@ if (isset($_POST['submitted'])) {
 
 ?>
 
-    <div class="row">
-		<div class="col-md-12">
-		<div class="alert alert-danger">Are you sure you want to delete your Account?</div>
-		<h2>Delete your account</h2>
-		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+	<div class="container">
+		<form class="needs-validation" novalidate="" action="../hero/delete.php" method="post">
+			<div class="row">
+				<button class="btn btn-primary btn-lg btn-block" type="submit">Delete</button>
+				<input type="hidden" name="submitted" value="TRUE" />
+			</div>
+		</form>
 
-		<form class="form-signin" action="delete.php" method="post">
-		
-		
-		
-		<div class="form-group">
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Delete My Account</button>
-		<!--<input type="submit" name="submit" value="Change My Password"/> -->
-		
-		<input type="hidden" name="submitted" value="TRUE" />
-		</div>
-	</form>
-      <hr>
-
-	</div>
-	</div>
-    </div> <!-- /jumbotron -->
+    </div> <!-- /container -->
+	</div><!-- /jumbotron -->
+</main>
 
       <footer>
        <?php
 		include('footer.php');
 		?>
       </footer>
-    </div> <!-- /container -->
 
 
   </body>

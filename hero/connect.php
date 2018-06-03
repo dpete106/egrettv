@@ -6,13 +6,12 @@ require_once ('config.inc.php');
 include_once( 'class.php' );
 
 ?>
+<main role="main">
 
-	<div class="jumbotron"><div class="module">
-	    <div class="col-lg-12">
-		<a href="https://twitter.com/storkman" class="twitter-follow-button" data-show-count="false">Follow @storkman</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-		</div>
+    <div style="margin-left: 125px; margin-right: 125px;" class="jumbotron">
+		<h1>Contact egret.tv</h1>
 
-		<h2>Contact egret.tv</h2>
+      <hr>
 
 <?php
 if (isset($_POST['submitted'])) { // Handle the form.
@@ -67,7 +66,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
 
 	if ($fn && $ln && $ms && $e) { // If everything's OK...
 				$ef = $e;
-				$et = 'davestorkman@egret.tv';
+				$et = 'dpete106@gmail.com';
 				
 				$headers = "MIME-Version: 1.0" . PHP_EOL .
 				"Content-type: text/html; charset=iso-8859-1" . PHP_EOL .
@@ -95,10 +94,11 @@ else {
 }
 
 ?>	
-    <div class="row marketing">
+	<div class="container">
+		<div class="row">
 	
-        <div class="col-lg-12">
-		<form class="form-signin" action="../hero/connect.php" method="post">
+			<div class="col-lg-12">
+			<form class="form-signin" action="../hero/connect.php" method="post">
 			<div class="form-group">
 			<!--<label for="inputFirstName">First Name</label>-->
 			<input type="text" class="form-control" id="inputFirstName" placeholder="FirstName" name="first_name" value="<?php if (isset($trimmed['first_name'])) echo $trimmed['first_name']; ?>">
@@ -131,30 +131,25 @@ else {
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Send Email</button>
 			<input type="hidden" name="submitted" value="TRUE" />
 			</div>
-		</form>
+			</form>
+			</div>
+		
+			<div class="col-lg-12">
+			</div>
+		
+		
+
 		</div>
 		
-        <div class="col-lg-12">
-		<a class="twitter-timeline" href="https://twitter.com/storkman" data-widget-id="330692432947724288">Tweets by @storkman</a>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-		</div>
-		
-		
-
-	</div>
-      <hr>
-
-
-    </div> <!-- /module -->
+    </div> <!-- /container -->
     </div> <!-- /jumbotron -->
-	
+</main> 
 	<footer>
        <?php
 		include('footer.php');
 		?>
     </footer>
 
-    </div> <!-- /container -->
 
   </body>
 </html>

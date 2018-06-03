@@ -5,16 +5,18 @@
 //$page_desc = 'egretTV is about egret and heron birds in their natural habitat of Connecticut&#39;s Long Island Sound ecosystem, dedicated to protection of the environment';
 ob_start();
 session_start();
-include('header.php');
+include('header_test.php');
 require_once ('config.inc.php'); 
 include_once( 'class.php' );
 
 ?>
-    <div class="jumbotron">
+<main role="main">
+
+    <div style="margin-left: 125px; margin-right: 125px;" class="jumbotron">
+		<h1>Change your egret.tv password without having to login</h1>
+		<hr>
 
 <?php # login.php
-// a space line
-echo "<br>";
 // Check if the form has been submitted:
 if (isset($_POST['submitted'])) {
 
@@ -96,66 +98,61 @@ if (isset($_POST['submitted'])) {
 
 } // End of the main Submit conditional.
 ?>
-
-    <div class="row">
-		<div class="col-md-12">
-		<h2>Change your egret.tv password without having to login</h2>
-		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-
-	
-
-		<form class="form-signin" action="../hero/password.php" method="post"> 
+	<div class="container">
+		<form class="needs-validation" novalidate="" action="../hero/password.php" method="post">
+			<div class="row">
 		
-		<div class="form-group">
-		<label for="inputEmail">Email Address:</label>
-		<input type="text" id="inputEmail" placeholder="Email" name="email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>">
-		</div>
+				<div class="col-md-6 mb-3">
+				<label for="inputEmail">Email</label>
+				<input type="email" class="form-control" name="email" id="inputEmail" placeholder="" value="" required="">
+				<div class="invalid-feedback">
+						Valid email is required.
+				</div>
+				</div>	
 		
-		<div class="form-group">
-		<label for="inputPassword">Current Password:</label>
-		<input type="password" id="inputPassword" placeholder="Password" name="pass">
-		</div>
+				<div class="col-md-6 mb-3">
+				<label for="inputPassword">Current Password</label>
+				<input type="password" class="form-control" name="pass" id="inputPassword" placeholder="" value="" required="">
+				<div class="invalid-feedback">
+						Valid password is required.
+				</div>
+				</div>
+			</div>
+					
+			<div class="row">
+				<div class="col-md-6 mb-3">
+				<label for="inputnewPassword">New Password</label>
+				<input type="password" class="form-control" name="password1" id="inputnewPassword" placeholder="" value="" required="">
+				<div class="invalid-feedback">
+						Valid password is required.
+				</div>
+				<p>Use only letters, numbers, and the underscore. Must be between 4 and 20 characters long.</p>
+				</div>	
 		
-		<div class="form-group">
-		<label for="inputnewPassword">New Password:</label>
-		<input type="password" id="inputnewPassword" placeholder="NewPassword" name="password1">
-		<p>Use only letters, numbers, and the underscore. Must be between 4 and 20 characters long.</p>
-		</div>
+				<div class="col-md-6 mb-3">
+				<label for="inputConPassword">Confirm New Password</label>
+				<input type="password" class="form-control" name="password2" id="inputConPassword" placeholder="" value="" required="">
+				<div class="invalid-feedback">
+						Valid password is required.
+				</div>
+				</div>
+			</div>
 		
-		<div class="form-group">
-		<label for="inputConPassword">Confirm New Password:</label>
-		<input type="password" id="inputConPassword" placeholder="ConPassword" name="password2">
-		</div>
-		
-		<div class="checkbox">
-		<label>
-			<input type="checkbox"> Remember me
-		</label>
-		</div>
-		
-		<div class="form-group">
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Reset My Password</button>
-		<!-- <input type="submit" name="submit" value="Change Password"/> -->
-		<input type="hidden" name="submitted" value="TRUE" />
-		</div>
+			<div class="row">
+				<button class="btn btn-primary btn-lg btn-block" type="submit">Reset My Password</button>
+				<input type="hidden" name="submitted" value="TRUE" />
+			</div>
 		
 		</form>
-
-		</div>
-	</div>
-    </div> <!-- /jumbotron -->
+    </div> <!-- /container -->
 	
-      <hr>
+	</div><!-- /jumbotron -->
+</main>
       <footer>
        <?php
 		include('footer.php');
 		?>
       </footer>
-		
-	
-</div> <!-- /container -->
-
- 
   </body>
 </html>
 
@@ -164,3 +161,25 @@ if (isset($_POST['submitted'])) {
 ob_end_flush();
 
 ?>
+<script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+</script>

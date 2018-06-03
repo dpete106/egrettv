@@ -20,7 +20,14 @@ $number = $slot[0] . $slot[1] . $slot[2];
 // echo $number;
 return $number;
 }
-echo '<div class="jumbotron">';
+?>
+<main role="main">
+
+    <div style="margin-left: 125px; margin-right: 125px;" class="jumbotron">
+		<h1>Join the egret.tv Community</h1>
+
+      <hr>
+<?php # register.php
 
 if (isset($_POST['submitted'])) { // Handle the form.
 
@@ -103,16 +110,16 @@ if (isset($_POST['submitted'])) { // Handle the form.
 				$headers = "MIME-Version: 1.0" . PHP_EOL .
 				"Content-type: text/html; charset=iso-8859-1" . PHP_EOL .
 				"Envelope-to: $e" . PHP_EOL .
-				"Reply-To: davestorkman " . PHP_EOL .
-				"Return-Path: davestorkman " . PHP_EOL .
-				"From: davestorkman " . PHP_EOL .
+				"Reply-To: storkman " . PHP_EOL .
+				"Return-Path: storkman " . PHP_EOL .
+				"From: storkman " . PHP_EOL .
 				"Organization: egret.tv" . PHP_EOL .
 				"Cc: " . PHP_EOL .
 				"Bcc: " . PHP_EOL .
 				"X-Mailer: PHP-" . phpversion() . PHP_EOL;				
 				$body = "Thank you for registering at egret.tv. To activate your account, please click on this link:\n\n";
 				$body .= BASE_URL . 'hero/activate.php?x=' . urlencode($e) . "&y=$a";
-				mail($trimmed['email'], 'From: davestorkman@egret.tv', $body, $headers);
+				mail($trimmed['email'], 'From: dpete106@gmail.com', $body, $headers);
 				
 				// Finish the page:
 				echo '<div class="alert alert-success">Thank you for registering! A confirmation email has been sent to your address. Please click on the link in that email in order to activate your account.</div>';
@@ -143,78 +150,98 @@ else {
 
 ?>
 
-    <div class="row">
-		<div class="col-md-12">
-		<h2>Join the egret.tv Community</h2>
-		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+	<div class="container">
 
-
-	<form class="form-signin" action="../hero/register.php" method="post">
-		<div class="form-group">
-		<!--<label for="inputFirstName">First Name:</label>-->
-		<input type="text" class="form-control"  id="inputFirstName" placeholder="FirstName" name="first_name" value="<?php if (isset($trimmed['first_name'])) echo $trimmed['first_name']; ?>">
+	<form class="needs-validation" novalidate="" action="../hero/register.php" method="post">
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label for="inputFirstName">First Name</label>
+				<input type="text" class="form-control" name="first_name" id="inputFirstName" placeholder="" value="<?php if (isset($trimmed['first_name'])) echo $trimmed['first_name']; ?>" required="">
+				<div class="invalid-feedback">
+				Valid First Name is required.
+				</div>
+			</div>
+			
+			<div class="col-md-6 mb-3">
+				<label for="inputLastName">Last Name</label>
+				<input type="text" class="form-control" name="last_name" id="inputLastName" placeholder="" value="<?php if (isset($trimmed['last_name'])) echo $trimmed['last_name']; ?>" required="">
+				<div class="invalid-feedback">
+					Valid Last Name is required.
+				</div>
+			</div>
 		</div>
 		
-		<div class="form-group">
-		<!--<label for="inputLastName">Last Name:</label>-->
-		<input type="text" class="form-control"  id="inputLastName" placeholder="LastName" name="last_name" value="<?php if (isset($trimmed['last_name'])) echo $trimmed['last_name']; ?>">
+		<div class="row">
+			<div class="col-md-12 mb-3">
+				<label for="email">Email</label>
+				<input type="email" class="form-control" name="email" id="inputEmail" placeholder="" value="<?php if (isset($trimmed['email'])) echo $trimmed['email']; ?>" required="">
+				<div class="invalid-feedback">
+				Valid Email is required.
+				</div>
+			</div>
+		</div>
+			
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label for="inputPassword">Password</label>
+				<input type="password" class="form-control" name="password1" id="inputPassword" placeholder="" value="" required="">
+				<div class="invalid-feedback">
+					Valid Password is required.
+				</div>
+			</div>
+			
+			<div class="col-md-6 mb-3">
+				<label for="inputConPassword">Confirm Password</label>
+				<input type="password" class="form-control" name="password2" id="inputConPassword" placeholder="" value="" required="">
+				<div class="invalid-feedback">
+					Valid Confirm Password is required.
+				</div>
+			</div>
 		</div>
 		
-		<div class="form-group">
-		<!--<label for="inputEmail">Email Address:</label>-->
-		<input type="email" class="form-control"  id="inputEmail" placeholder="Email" name="email" value="<?php if (isset($trimmed['email'])) echo $trimmed['email']; ?>">
+		
+		<div class="row">
+			<div class="col-md-8 mb-3">
+				<?php echo $_SESSION['rand_number']; ?>
+				<label for="inputNumbers">Enter these numbers</label>
+				<input type="text" class="form-control" name="numbers" id="inputNumbers" placeholder="" value="" required="">
+				<div class="invalid-feedback">
+				Valid numbers are required.
+				</div>
+				<p>To prevent spam please enter the 3 numbers displayed above and to the left.</p>
+			</div>
+		
+		
+			<div class="col-md-4 mb-3">
+				<div class="checkbox">
+				<label>
+				<input type="checkbox"> Remember me
+				</label>
+				</div>
+			</div>
+		
 		</div>
 		
-		<div class="form-group">
-		<!--<label for="inputPassword">Password:</label>-->
-		<input type="password" class="form-control"  id="inputPassword" placeholder="Password" name="password1">
-		<p>Use only letters, numbers, and the underscore. Must be between 4 and 20 characters long.</p>
-		</div>
-		
-		<div class="form-group">
-		<!--<label class="sr-label" for="inputConPassword">Confirm Password:</label>-->
-		<input type="password" class="form-control"  id="inputConPassword" placeholder="ConfirmPassword" name="password2">
-		</div>
-		
-		<div class="form-group">
-		<?php echo $_SESSION['rand_number']; ?>
-		
-		<label for="inputNumbers">Enter these numbers </label>
-		<input type="text"  class="form-control" id="inputNumbers" placeholder="Numbers" name="numbers">
-		<p>To prevent spam please enter the 3 numbers displayed above and to the left.</p>
-		</div>
-		
-		<div class="checkbox">
-		<label>
-			<input type="checkbox"> Remember me
-		</label>
-		</div>
-		
-		<div class="form-group">
-		<!-- <input type="submit" name="submit" value="Join egretTV"/> -->
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Join egret.tv</button>
+		<button class="btn btn-primary btn-lg btn-block" type="submit">Join egret.tv</button>
 		<input type="hidden" name="submitted" value="TRUE" />
-		</div>
+		
 	</form>
 
 
-		</div>
-	</div> <!-- row -->
-    </div> <!-- jumbotron -->
-	
-      <hr>
+    </div> <!-- /container -->
+	</div><!-- /jumbotron -->
+</main>
+
       <footer>
        <?php
 		include('footer.php');
 		?>
       </footer>
 
-    </div> <!-- container -->
 
  
   </body>
 </html>
-
 <?php
 function email_check($email){
 	$pattern = "/^[-_a-z0-9\'+*$^&%=~!?{}]++(?:\.[-_a-z0-9\'+*$^&%=~!?{}]+)*+@(?:(?![-.])[-a-z0-9.]+(?<![-.])\.[a-z]{2,6}|\d{1,3}(?:\.\d{1,3}){3})(?::\d++)?$/iD";
@@ -239,3 +266,25 @@ function email_check($email){
 ob_end_flush();
 
 ?>
+<script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+</script>

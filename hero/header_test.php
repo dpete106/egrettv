@@ -39,22 +39,40 @@ if ($page == "webcam" ){
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<script src="http://localhost/egrettv/bootstrap-4-dist/js/bootstrap.min.js"></script>
 
+	<link href="http://localhost/egrettv/css/element_style.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="http://localhost/egrettv/bootstrap-4-dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="http://localhost/egrettv/css/narrow-jumbotron.css" rel="stylesheet">
-    <link href="http://localhost/egrettv/css/style.css" rel="stylesheet">
+    <!-- Custom styles for this template
+    <link href="http://localhost/egrettv/css/narrow-jumbotron.css" rel="stylesheet">  
+     <link href="http://localhost/egrettv/css/jumbotron.css" rel="stylesheet">  -->
+	<link href="http://localhost/egrettv/css/style.css" rel="stylesheet">
 
 
   </head>
-
+<!-- Modal -->
+    <div class="modal fade" id="project1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Roger Tory Peterson</h4>
+                </div>
+                <div class="modal-body">
+				content
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	
   <body>
-	<div class="container">
-
-	<!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> -->
- 	<nav class="navbar navbar-expand-md navbar-dark bg-dark"> 
-     <a class="navbar-brand" href="#">egret.tv</a>
+	<header>
+	
+	<!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> took out bg-dark -->
+ 	<nav  class="navbar navbar-expand-md navbar-dark "> 
+     <a class="navbar-brand" href="#"><img src="/egrettv/images/egret_logo_2.png"  class="img-responsive"  style="position: relative;width: 100%;height: auto;"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -62,25 +80,25 @@ if ($page == "webcam" ){
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="http://localhost/egrettv/index.php">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/egrettv/hero/connect.php">Contact</a></li>
-            <a class="nav-link" href="/egrettv/hero/webcam.php">Long Island Sound Cam</a></li>
-         </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
+            <a  style="font-weight: bold;" class="nav-link" href="http://localhost/egrettv/index.php">Home <span class="sr-only">(current)</span></a></li>
+          <li class="nav-item active">
+            <a  style="font-weight: bold;" class="nav-link" href="/egrettv/hero/connect.php">Contact</a></li>
+           <li class="nav-item active">
+           <a  style="font-weight: bold;" class="nav-link" href="/egrettv/hero/webcam.php">Sound Cam</a></li>
+            <li class="nav-item active">
+           <a  style="font-weight: bold;" class="nav-link" href="/egrettv/hero/video.php">Videos</a></li>
+         <li class="nav-item active">
+            <a  style="font-weight: bold;" class="nav-link" href="/egrettv/hero/donation.php">Donate</a></li>
 		  
-          <li class="nav-item dropdown">
+          <li class="nav-item active dropdown">
 		  
             <!--<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
 <?php  
 			if (isset($_SESSION['user_id'])) {
 				$first_name = $_SESSION['first_name'];
-				echo '<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'. $first_name . '</a>';
+				echo '<a  class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'. $first_name . '</a>';
 				} else {
-				echo '<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MyAccount</a>';
+				echo '<a  class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MyAccount</a>';
 			}
 ?>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -109,4 +127,5 @@ if ($page == "webcam" ){
 		  
         </ul>
       </div>
-    </nav>
+    </nav> 
+	</header>
