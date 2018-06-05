@@ -22,7 +22,7 @@ if (!isset($_SESSION['first_name'])) {
 ?>
 <main role="main">
 
-      <section style="margin-left: 125px; margin-right: 125px;" class="jumbotron">
+    <div style="background-color:rgba(192,192,192,0.1);" class="jumbotron">
         <div class="container">
           <h1 class="jumbotron-heading">Popular egret.tv Videos on <a target="_blank" href="https://www.youtube.com/channel/UC6BqMHGjvexrX0aTu_M4f9A" >YouTube</a></h1>
 		  <hr>
@@ -84,7 +84,7 @@ if (!isset($_SESSION['first_name'])) {
               <div class="card mb-4 box-shadow">
                 <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="/egrettv/images/greategret_20080605.jpg" alt="Card image cap">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text">In the space of a minute this Great Egret spears 2 fish with his slender and long dagger-like yellow bill.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->

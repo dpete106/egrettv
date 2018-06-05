@@ -22,7 +22,7 @@ if (!isset($_SESSION['first_name'])) {
 ?>
 <main role="main">
 
-    <div style="margin-left: 125px; margin-right: 125px;" class="jumbotron">
+    <div style="background-color:rgba(192,192,192,0.1);" class="jumbotron">
 		<h1>Delete your egret.tv account</h1>
 		<div class="alert alert-danger">Are you sure you want to delete your Account?</div>
 		<hr>

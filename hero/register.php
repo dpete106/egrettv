@@ -23,7 +23,7 @@ return $number;
 ?>
 <main role="main">
 
-    <div style="margin-left: 125px; margin-right: 125px;" class="jumbotron">
+    <div style="background-color:rgba(192,192,192,0.1);" class="jumbotron">
 		<h1>Join the egret.tv Community</h1>
 
       <hr>
@@ -119,7 +119,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
 				"X-Mailer: PHP-" . phpversion() . PHP_EOL;				
 				$body = "Thank you for registering at egret.tv. To activate your account, please click on this link:\n\n";
 				$body .= BASE_URL . 'hero/activate.php?x=' . urlencode($e) . "&y=$a";
-				mail($trimmed['email'], 'From: dpete106@gmail.com', $body, $headers);
+				mail($trimmed['email'], 'From: davestorkman@egret.tv', $body, $headers);
 				
 				// Finish the page:
 				echo '<div class="alert alert-success">Thank you for registering! A confirmation email has been sent to your address. Please click on the link in that email in order to activate your account.</div>';

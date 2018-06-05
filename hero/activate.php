@@ -4,14 +4,15 @@ ob_start();
 session_start();
 include('header_test.php');
 ?>
-    <div class="container">
+<main role="main">
+
+    <div style="background-color:rgba(192,192,192,0.1);" class="jumbotron">
+		<h1>Activate new egret.tv Account Message</h1>
+		<hr>
 <?php # activate.php
 require_once ('config.inc.php'); 
 include_once( 'class.php' );
 
-echo '<div class="jumbotron">';
-// a space line
-echo "<br>";
 // Validate $_GET['x'] and $_GET['y']:
 $x = $y = FALSE;
 if (isset($_GET['x']) && preg_match ('/^[\w.-]+@[\w.-]+\.[A-Za-z]{2,6}$/', $_GET['x']) ) {
@@ -55,14 +56,14 @@ if ($x && $y) {
 } // End of main IF-ELSE.
 
 ?>
-    <div class="row">
-		<div class="col-md-12">
-		<h2>Activate Account to egret.tv</h2>
-		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-		</div>
-	</div>
-	</div>
-	<hr>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+				</div>
+			</div>
+		</div> <!-- /container -->
+	</div><!-- /jumbotron -->
+</main>
 	
       <footer>
        <?php
@@ -70,7 +71,6 @@ if ($x && $y) {
 		?>
       </footer>
 
-    </div> <!-- /container -->
 
  
   </body>

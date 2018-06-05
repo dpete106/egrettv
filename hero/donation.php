@@ -22,7 +22,7 @@ if (!isset($_SESSION['first_name'])) {
 ?>
 <main role="main">
 
-    <div style="margin-left: 125px; margin-right: 125px;" class="jumbotron">
+    <div style="background-color:rgba(192,192,192,0.1);" class="jumbotron">
 		<h1>COMING SOON - Donation form</h1>
 		<hr>
 

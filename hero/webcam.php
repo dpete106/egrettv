@@ -6,7 +6,7 @@ include('./header_test.php');
 ?>
 <main role="main">
 
-    <div style="margin-left: 125px; margin-right: 125px;" class="jumbotron">
+    <div style="background-color:rgba(192,192,192,0.1);" class="jumbotron">
 	
 		<h1>Long Island Sound Webcam</h1>
 		<hr>
