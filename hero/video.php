@@ -23,15 +23,12 @@ if (!isset($_SESSION['first_name'])) {
 <main role="main">
 
     <div style="background-color:rgba(192,192,192,0.1);" class="jumbotron">
-        <div class="container">
           <h1 class="jumbotron-heading">Popular egret.tv Videos on <a target="_blank" href="https://www.youtube.com/channel/UC6BqMHGjvexrX0aTu_M4f9A" >YouTube</a></h1>
-		  <hr>
           <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
           <p>
             <a href="/egrettv/hero/donation.php" class="btn btn-primary my-2">Support egret.tv</a>
           </p>
-        </div>
-      </section>
+		  <hr>
 
 <?php # please join
 if (!isset($_SESSION['first_name'])) {
@@ -46,7 +43,8 @@ if (!isset($_SESSION['first_name'])) {
 } else {
 
 ?>
-    <section style="margin-left: 125px; margin-right: 125px;" class="jumbotron">
+	<div class="container">
+    <section class="jumbotron">
 	<div class="album py-5 bg-light">
 		<div class="container">
 			<div class="row">
@@ -103,6 +101,8 @@ if (!isset($_SESSION['first_name'])) {
 <?php
 }
 ?>
+    </div> <!-- /container -->
+	</div><!-- /jumbotron -->
 </main>
 
       <footer>
