@@ -4,6 +4,7 @@ body {
     background-position: top center;
     background-repeat: no-repeat;
 }
+
 header {
 }
 
@@ -19,8 +20,6 @@ h1 {
 }
 .navbar {
 	background: rgba(0,123,255,.5);
-	margin-left: 125px; 
-	margin-right: 125px;
 }
 .form-signin {
 max-width: 390px;

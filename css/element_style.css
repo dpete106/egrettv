@@ -2,3 +2,8 @@
 a.nav-link  {
 	color: darkblue;
 }
+.jumbotron {
+    background-image: url(/egrettv/images/wave-background.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+}

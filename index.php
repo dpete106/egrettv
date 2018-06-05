@@ -11,7 +11,7 @@ include('./hero/header_test.php');
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
 <main role="main">
-    <div style="margin-left: 125px; margin-right: 125px;" class="jumbotron">
+    <div style="background-color:rgba(192,192,192,0.1);" class="jumbotron">
 		<div class="container">
 			<h1>egret.tv | Help protect the Long Island Sound</h1>
 			<hr class="border-row-heavy">

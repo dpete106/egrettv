@@ -1,4 +1,4 @@
-<div style="margin-left: 125px; margin-right: 125px;" class="jumbotron">
+    <div style="background-color:rgba(192,192,192,0.1);" class="jumbotron">
 <p>&copy; egret.tv 2018</p>
 	<div class="container">
 		<div class="row">
