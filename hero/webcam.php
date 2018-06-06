@@ -30,11 +30,7 @@ include('./header_test.php');
 			<h4>There's a natural progression from inside the living room, into the 3 season porch, step outside to the patio, over the seawall and down to the rocks and sand, and then back again.</h4>
 			<h5>tweet when they eat!</h5>
 			<p>
-			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.egret.tv/hero/webcam.php" data-via="storkman" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a>
-			</p>
-			</div>
-		
-		</div>
+			<a href="https://twitter.com/intent/tweet?screen_name=storkman&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">Tweet to @storkman</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>		</div>
 		
     </div> <!-- /container -->
 	</div> <!-- /jumbotron -->
