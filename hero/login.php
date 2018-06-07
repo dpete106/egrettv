@@ -3,8 +3,6 @@
 ob_start();
 session_start();
 
-
-
 include('header_test.php');
 
 ?>
@@ -63,10 +61,11 @@ if (isset($_POST['submitted'])) {
 			//}";
             //echo "run('$localuser')"; 
 			//echo "</script>";
+			
 			$url = BASE_URL . 'index.php'; // Define the URL:
-			header("Location: $url");
-			exit(); // Quit the script.
-			//echo '<div class="alert alert-success">You have successfully logged in to egret.tv!</div>';
+			//header("Location: $url");
+			//exit(); // Quit the script.
+			echo '<div class="alert alert-success">You have successfully logged in to egret.tv!</div>';
 
 		} else { // No match was made.
 			echo '<div class="alert alert-danger">Either the email address and password entered do not match those on file or you have not yet activated your account.</div>';
