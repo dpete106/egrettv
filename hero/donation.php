@@ -3,7 +3,6 @@
 
 ob_start(); // output stored in internal buffer
 session_start();
-echo '1 = ' . session_id();
 include('header_test.php');
 require_once ('config.inc.php');
 include_once( 'class.php' );
@@ -12,7 +11,6 @@ include('./form_functions.inc.php');
 
 // If no first_name session variable exists, redirect the user:
 if (isset($_SESSION['first_name'])) {
-	echo '1 = ' . $_SESSION['firstName'];
 
 	//$url = BASE_URL . 'index.php'; // Define the URL.
 	//ob_end_clean(); // Delete the buffer.
@@ -32,7 +30,6 @@ if (isset($_SESSION['first_name'])) {
 
 <?php 
 if (isset($_SESSION['first_name'])) {
-	echo '2 = ' . $_SESSION['firstName'];
 
 	//$url = BASE_URL . 'index.php'; // Define the URL.
 	//ob_end_clean(); // Delete the buffer.
@@ -41,7 +38,7 @@ if (isset($_SESSION['first_name'])) {
 	//header("Location: $url");
 	//exit(); // Quit the script.
 	
-} else {echo '3 = ' . session_id();}
+} else {}
 
 // For storing errors:
 $shipping_errors = array();
@@ -151,55 +148,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="col-md-4 order-md-2 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill">3</span>
+            <span class="badge badge-secondary badge-pill">1</span>
           </h4>
           <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
-                <h6 class="my-0">Product name</h6>
-                <small class="text-muted">Brief description</small>
+                <h6 class="my-0">Donation</h6>
+                <small class="text-muted">Thank you for your egret.tv contribution.</small>
               </div>
-              <span class="text-muted">$12</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Second product</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$8</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Third item</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between bg-light">
-              <div class="text-success">
-                <h6 class="my-0">Promo code</h6>
-                <small>EXAMPLECODE</small>
-              </div>
-              <span class="text-success">-$5</span>
+              <span class="text-muted">$25</span>
             </li>
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (USD)</span>
-              <strong>$20</strong>
+              <strong>$25</strong>
             </li>
           </ul>
 
-          <form class="card p-2">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Promo code">
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
-              </div>
-            </div>
-          </form>
         </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Billing address</h4>
-          <form class="needs-validation" novalidate action="/egrettv/hero/donation.php" method="POST" id="donation_form">
+          <form class="needs-validation" novalidate action="/hero/donation.php" method="POST" id="donation_form">
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
@@ -364,9 +332,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </html>
 
 <?php
-if (isset($_SESSION['first_name'])) {
-echo '4 = ' . $_SESSION['firstName'];
-}
 ob_end_flush(); // send output buffer and turn off output buffering
 
 ?>
