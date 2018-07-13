@@ -5,7 +5,7 @@ ob_start(); // output stored in internal buffer
 session_start();
 include('header_test.php');
 require_once ('config.inc.php');
-include_once( 'class.php' );
+require('./mysql.inc.php');
 // Need the form function:
 include('./form_functions.inc.php');
 
@@ -49,6 +49,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	// Check for Magic Quotes:
 	if (get_magic_quotes_gpc()) {
 		$_POST['firstName'] = stripslashes($_POST['firstName']);
+	}
+
+	// Check for a Stripe token:
+	if (isset($_POST['token'])) {
+		$token = $_POST['token'];		
+	} else {
+		$message = 'The order cannot be processed. Please make sure you have JavaScript enabled and try again.';
+		$shipping_errors['token'] = true;
 	}
 
 	// Check for a first name:
@@ -116,6 +124,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	} else {
 		$shipping_errors['zip'] = 'Please enter your zip code!';
 	}
+	
+	// Check for a phone number:
+	// Strip out spaces, hyphens, and parentheses:
+	$phone = str_replace(array(' ', '-', '(', ')'), '', $_POST['phone']);
+	if (preg_match ('/^[0-9]{10}$/', $phone)) {
+		$p  = $phone;
+	} else {
+		$shipping_errors['phone'] = 'Please enter your phone number!';
+	}
+	
 	foreach ($shipping_errors as $value) {
 		echo '<div class="alert alert-warning" id="error_span">' . $value . 'Thank you for your donation!</div>';
 	}
@@ -131,11 +149,195 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$_SESSION['city'] = $_POST['city'];
 		$_SESSION['state'] = $_POST['state'];
 		$_SESSION['zip'] = $_POST['zip'];
-		echo '<div class="alert alert-warning" id="error_span">Thank you for your donation!</div>';
+		$_SESSION['phone'] = $_POST['phone'];
+		
+		// check if duplicate customer
+		$q = "(SELECT id FROM customers WHERE (email = '" . $e . "') AND (last_name = '" . $ln . "') AND (address1 = '" . $a1 . "') ORDER by id DESC LIMIT 1)";
+		$r = mysqli_query($dbc, $q);
+
+		if (!$r) echo mysqli_error($dbc);
+
+		if (mysqli_num_rows($r) == 1) {
+
+			list($_SESSION['customer_id']) = mysqli_fetch_array($r);
+			
+		} else { 
+			// Add the user to the database...
+			$q1 = 'INSERT INTO customers (email, first_name, last_name, address1, address2, city, state, zip, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+			$affected = 0;
+			$stmt1 = mysqli_prepare($dbc, $q1);
+			mysqli_stmt_bind_param($stmt1, 'sssssssss', $e, $fn, $ln, $a1, $a2, $c, $s, $z, $p);
+			mysqli_stmt_execute($stmt1);
+			$affected += mysqli_stmt_affected_rows($stmt1);	
+			if (!$affected > 0) echo mysqli_error($dbc);
+			// Confirm that it worked:
+			if ($affected > 0) {
+				// Retrieve the customer ID:
+				$q = 'SELECT id FROM customers ORDER BY id DESC LIMIT 0, 1';
+
+				$r = mysqli_query($dbc, $q);
+			
+				if (mysqli_num_rows($r) == 1) {
+					list($_SESSION['customer_id']) = mysqli_fetch_array($r);
+					//exit();
+				}
+			} else {
+				trigger_error('Your order could not be processed due to a system error 1. We apologize for the inconvenience.');
+				exit();
+			} // IF customer not on DB
+		} // IF customer on DB
+		
+		if (isset($_SESSION['order_id']) && isset($_SESSION['order_total'])) { // Use existing order info:
+
+			$oid = $_SESSION['order_id'];
+			$order_total = $_SESSION['order_total'];
+			
+		} else { // Create a new order record:
+			$cc_last_four = 1234;
+			$shipping = 0;
+			$customer_id = $_SESSION['customer_id'];
+			$order_total = 2500;
+
+			$q1 = 'INSERT INTO orders (customer_id, total, shipping, credit_card_number, order_date) VALUES (?, ?, ?, ?, NOW())';
+			$affected = 0;
+			$stmt1 = mysqli_prepare($dbc, $q1);
+			mysqli_stmt_bind_param($stmt1, 'iiii', $customer_id, $order_total, $shipping, $cc_last_four);
+			mysqli_stmt_execute($stmt1);
+			$affected += mysqli_stmt_affected_rows($stmt1);	
+			if (!$affected > 0) echo mysqli_error($dbc);
+		
+			// Confirm that it worked:
+			if ($affected > 0) {
+
+				$q = 'SELECT LAST_INSERT_ID()';
+
+				$r = mysqli_query($dbc, $q);
+				if (mysqli_num_rows($r) == 1) {
+					list($oid) = mysqli_fetch_array($r);
+				} else { // Could not retrieve the order ID and total.
+					unset($_POST['cc_number'], $_POST['cc_cvv']);
+					trigger_error('Your order could not be processed due to a system error 2. We apologize for the inconvenience.');
+					exit();
+				}
+			} else { // The add_order() procedure failed.
+				trigger_error('Your order could not be processed due to a system error 3. We apologize for the inconvenience.');
+				exit();
+			}
+		}			
+		
+		
+		$_SESSION['order_total'] = $order_total;
+		$_SESSION['order_id'] = $oid;
+		
+		// Process the payment!
+		if (isset($oid, $order_total)) {
+
+			try {
+
+				// Include the Stripe library:
+				require_once('../vendor/autoload.php');
+				$stripe = array(
+					'secret_key'      => 'sk_test_GBsb65uAB1MefNcwXKRBmjp6',
+					'publishable_key' => 'pk_test_JRGK5txjD4IIgyJU5ztDwSz1'
+				);
+				\Stripe\Stripe::setApiKey($stripe['secret_key']);
+				// set your secret key: remember to change this to your live secret key in production
+
+				// Charge the order:
+				$charge = \Stripe\Charge::create(array(
+					'amount' => $order_total,
+					'currency' => 'usd',
+					'card' => $token,
+					'description' => $_SESSION['email'],
+					'capture' => false
+					)
+				);
+
+
+				// Did it work?
+				if ($charge->paid == 1) {
+
+					// Add slashes to two text values:
+					$full_response = addslashes(serialize($charge));
+
+					// Record the transaction:
+					$charge_id = $charge->id;
+					
+					$q = 'INSERT INTO charges VALUES (NULL, "'. $charge_id .'", '. $oid .', "auth_only", '. $order_total .', "'. $full_response .'", NOW());';
+					$r = mysqli_query($dbc, $q);
+					// For debugging purposes:
+					if (!$r) echo mysqli_error($dbc);
+
+					
+					// Add the transaction info to the session:
+					$_SESSION['response_code'] = $charge->paid;  // = 1
+					
+					// Redirect to the next page:
+					//$location = '/livewater/' . BASE_URL . 'final.php';
+					//header("Location: $location");
+					//exit();
+					$message_paid = "Thank you for your donation to egret.tv!  A confirmation email has been sent to you.";
+				} else {
+					$message = $charge->response_reason_text;
+					echo '<script type="text/javascript">alert("0'.$message.'");</script>';
+
+				}
+
+			} catch (\Stripe\Error\Card $e) { // Stripe declined the charge.
+				$e_json = $e->getJsonBody();
+				$err = $e_json['error'];
+				$bankerror1 = $err['message'];
+			
+			//} catch (\Stripe\Error\RateLimit $e) { // Stripe declined the charge.
+			//	$e_json = $e->getJsonBody();
+			//	$err = $e_json['error'];
+			//	$bankerror2 = $err['message'];
+				
+			//} catch (\Stripe\Error\InvalidRequest $e) { // Stripe declined the charge.
+			//	$e_json = $e->getJsonBody();
+			//	$err = $e_json['error'];
+			//	$bankerror3 = $err['message'];
+				
+			//} catch (\Stripe\Error\Authentication $e) { // Stripe declined the charge.
+			//	$e_json = $e->getJsonBody();
+			//	$err = $e_json['error'];
+			//	$bankerror4 = $err['message'];
+			//} catch (\Stripe\Error\ApiConnection $e) { // Stripe declined the charge.
+			//	$e_json = $e->getJsonBody();
+			//	$err = $e_json['error'];
+			//	$bankerror5 = $err['message'];
+			//} catch (\Stripe\Error\Base $e) { // Stripe declined the charge.
+			//	$e_json = $e->getJsonBody();
+			//	$err = $e_json['error'];
+			//	$bankerror6 = $err['message'];
+			} catch (Exception $e) { // Try block failed somewhere else.
+				$bankerror7 = $e->getMessage();
+			}
+
+		} // End of isset($order_id, $order_total) IF.
+		
+		// order processed - could be errors
+		
+
 	} // Errors occurred IF.
 
 	
 } // End of the main Submit conditional.
+
+// display warning or error messages
+if (isset($message)) { // this type of error message is a system error
+	echo '<div class="alert alert-info" id="error_span">$message</div>';	
+} elseif (isset($bankerror1))		{ // this type of error message is a Stripe card return error
+		echo "<div class=\"alert alert-danger\">1 $bankerror1</div>";
+} elseif (isset($bankerror7))		{ // this type of error message is a Stripe card return error
+		echo "<div class=\"alert alert-danger\">7 $bankerror7</div>";
+} elseif (isset($message_paid))		{ // this type of error message is a Stripe card return error
+		echo "<div class=\"alert alert-success\">7 $message_paid</div>";
+} else {
+		echo '<div class="alert alert-warning" id="error_span">Please enter all the fields below and click the Contribute button - if it does not work look here for an error message.</div>';
+}
+	
+
 
 ?>
 <!-- page VIEW -->
@@ -167,7 +369,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Billing address</h4>
-          <form class="needs-validation" novalidate action="/hero/donation.php" method="POST" id="donation_form">
+          <form class="needs-validation" novalidate action="/egrettv/hero/donation.php" method="POST" id="billing_form">
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
@@ -251,7 +453,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   Zip code required.
                 </div>
               </div>
-            </div>
+               <div class="col-md-3 mb-3">
+                <label for="phone">Phone</label>
+				<?php create_form_input('phone', 'text', $shipping_errors); ?>
+                <div class="invalid-feedback">
+                  Phone number required.
+                </div>
+              </div>
+           </div>
 			
 			
             <hr class="mb-4">
@@ -268,6 +477,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h4 class="mb-3">Payment</h4>
 
             <div class="d-block my-3">
+				<div class="alert alert-danger">We are still in TEST mode. 4242424242424242 is a valid VISA number.  Try 4000000000000002 for card decline error.</div>
+			</div>
+			
+             <div class="d-block my-3">
               <div class="custom-control custom-radio">
                 <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
                 <label class="custom-control-label" for="credit">Credit card</label>
@@ -281,18 +494,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label class="custom-control-label" for="paypal">PayPal</label>
               </div> -->
             </div>
-            <div class="row">
+           <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="cc-name">Name on card</label>
-                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                <small class="text-muted">Full name as displayed on card</small>
-                <div class="invalid-feedback">
-                  Name on card is required
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                <label for="cc_number">Credit card number</label>
+                <input type="text" class="form-control" id="cc_number" value="" placeholder="" required>
                 <div class="invalid-feedback">
                   Credit card number is required
                 </div>
@@ -300,22 +505,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="row">
               <div class="col-md-3 mb-3">
-                <label for="cc-expiration">Expiration</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                <label for="cc_exp_month">Expiration Date (MM)</label>
+                <input type="text" class="form-control" id="cc_exp_month" placeholder="" required>
                 <div class="invalid-feedback">
-                  Expiration date required
+                  Expiration MM required
                 </div>
               </div>
               <div class="col-md-3 mb-3">
-                <label for="cc-cvv">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                <label for="cc_exp_month">Expiration Date (YYYY)</label>
+                <input type="text" class="form-control" id="cc_exp_year" placeholder="" required>
                 <div class="invalid-feedback">
-                  Security code required
+                  Expiration YYYY required
                 </div>
               </div>
-            </div>
+			</div>
+			<div class="row">
+					<div class="col-md-3 mb-3">
+						<label for="cc_cvv">CVV</label>
+						<input type="text" class="form-control" id="cc_cvv" placeholder="" required>
+						<div class="invalid-feedback">
+						Security code required
+						</div>
+					</div>
+			</div>
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Contribute</button>
           </form>
         </div>
 	</div> <!-- /row -->
@@ -358,3 +572,8 @@ ob_end_flush(); // send output buffer and turn off output buffering
         }, false);
       })();
     </script>
+<script type="text/javascript">
+Stripe.setPublishableKey('pk_test_JRGK5txjD4IIgyJU5ztDwSz1');
+</script> 
+
+<script type="text/javascript" src="/egrettv/js/billing.js"></script>

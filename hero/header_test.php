@@ -47,6 +47,7 @@ if ($page == "webcam" ){
     <link href="http://localhost/egrettv/css/narrow-jumbotron.css" rel="stylesheet">  
      <link href="http://localhost/egrettv/css/jumbotron.css" rel="stylesheet">  -->
 	<link href="http://localhost/egrettv/css/style.css" rel="stylesheet">
+	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 
   </head>
