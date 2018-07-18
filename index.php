@@ -48,7 +48,8 @@ include('./hero/header_test.php');
 				<p>The mission of egret.tv is to the protect and preserve the Long Island Sound ecosystem.
 				The vision of egret.tv is a sustainable healthy Long Island Sound coexisting with a vibrant economy benefiting all people living in the region.
 				The work of egret.tv supports clean air, water and habitat of the Long Island Sound, slowing climate change, and over-development protection. 
-				egret.tv is a tax exempt organization under Section 501(c)3 of the Internal Revenue Code (pending status).
+				<!-- egret.tv is a tax exempt organization under Section 501(c)3 of the Internal Revenue Code (pending status). -->
+				egret.tv is a non-profit organization.
 				</p>
 				</p>
 				<img src="/egrettv/images/ltern.gif"  class="img-fluid"  >

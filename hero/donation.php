@@ -273,10 +273,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					$_SESSION['response_code'] = $charge->paid;  // = 1
 					
 					// Redirect to the next page:
-					//$location = '/livewater/' . BASE_URL . 'final.php';
-					//header("Location: $location");
-					//exit();
-					$message_paid = "Thank you for your donation to egret.tv!  A confirmation email has been sent to you.";
+					$location = BASE_URL . 'hero/' . 'final.php';
+					header("Location: $location");
+					exit();
+					//$message_paid = "Thank you for your donation to egret.tv!  A confirmation email has been sent to you.";
 				} else {
 					$message = $charge->response_reason_text;
 					echo '<script type="text/javascript">alert("0'.$message.'");</script>';
@@ -343,7 +343,7 @@ if (isset($message)) { // this type of error message is a system error
 <!-- page VIEW -->
 	<div class="container">
       <div class="row">
-        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        <p class="lead">With your gift, know that you're protecting the Long Island Sound.</p>
       </div>
 
       <div class="row">
@@ -470,7 +470,7 @@ if (isset($message)) { // this type of error message is a system error
             </div> -->
             <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" id="save-info">
-              <label class="custom-control-label" for="save-info">Save this information for next time</label>
+              <label class="custom-control-label" for="save-info">Protect the Long Island Sound</label>
             </div>
             <hr class="mb-4">
 
@@ -480,11 +480,13 @@ if (isset($message)) { // this type of error message is a system error
 				<div class="alert alert-danger">We are still in TEST mode. 4242424242424242 is a valid VISA number.  Try 4000000000000002 for card decline error.</div>
 			</div>
 			
+           <div class="row">
              <div class="d-block my-3">
               <div class="custom-control custom-radio">
                 <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Credit card</label>
+                <label class="custom-control-label" for="credit">Credit Card Payments</label>
               </div>
+			  <p>egret.tv does not store your credit card information in any way.  We use Stripe.com, one of the most secure and reputable payment processors available.</p>
               <!-- <div class="custom-control custom-radio">
                 <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
                 <label class="custom-control-label" for="debit">Debit card</label>
@@ -493,16 +495,25 @@ if (isset($message)) { // this type of error message is a system error
                 <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
                 <label class="custom-control-label" for="paypal">PayPal</label>
               </div> -->
-            </div>
-           <div class="row">
-              <div class="col-md-6 mb-3">
+				</div>
+           </div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="d-block my-3">
+					<img class="img-responsive" style="float:left"; src="/egrettv/images/stripe_logo.jpg" width="20%" height="20%" />
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6 mb-3">
                 <label for="cc_number">Credit card number</label>
                 <input type="text" class="form-control" id="cc_number" value="" placeholder="" required>
                 <div class="invalid-feedback">
                   Credit card number is required
                 </div>
-              </div>
-            </div>
+				</div>
+           </div>
             <div class="row">
               <div class="col-md-3 mb-3">
                 <label for="cc_exp_month">Expiration Date (MM)</label>
@@ -529,6 +540,9 @@ if (isset($message)) { // this type of error message is a system error
 					</div>
 			</div>
             <hr class="mb-4">
+			<div class="row">
+				<p class="lead">egret.tv is a non-profit organization.  Thank you for your generosity!</p>
+			</div>
             <button class="btn btn-primary btn-lg btn-block" type="submit">Contribute</button>
           </form>
         </div>
