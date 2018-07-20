@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 	
 	foreach ($shipping_errors as $value) {
-		echo '<div class="alert alert-warning" id="error_span">' . $value . 'Thank you for your donation!</div>';
+		echo '<div class="alert alert-danger" id="error_span">' . $value . '</div>';
 	}
 	
 	
@@ -333,8 +333,9 @@ if (isset($message)) { // this type of error message is a system error
 		echo "<div class=\"alert alert-danger\">7 $bankerror7</div>";
 } elseif (isset($message_paid))		{ // this type of error message is a Stripe card return error
 		echo "<div class=\"alert alert-success\">7 $message_paid</div>";
+} elseif (!empty($shipping_errors))		{ // this type of error message is a Stripe card return error
 } else {
-		echo '<div class="alert alert-warning" id="error_span">Please enter all the fields below and click the Contribute button - if it does not work look here for an error message.</div>';
+		echo '<div class="alert alert-info" id="error_span">Please enter all the fields below and click the Contribute button - if it does not work look here for an error message.</div>';
 }
 	
 
