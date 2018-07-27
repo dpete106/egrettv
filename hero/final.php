@@ -67,6 +67,10 @@ include('./footer.php');
 </html>
 
 <?php
+//remove PHPSESSID from browser
+if ( isset( $_COOKIE[session_name()] ) ) {
+	setcookie( session_name(), '', time()-3600, '/' );
+}
 // Clear the session:
 $_SESSION = array(); // Destroy the variables.
 session_destroy(); // Destroy the session itself.
