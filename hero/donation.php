@@ -1,8 +1,15 @@
 <?php # donation.php
+session_start();
+if ( isset( $_COOKIE[session_name()] ) ) {
+	setcookie( session_name(), '', time()-3600, '/' );
+}
+// Clear the session:
+$_SESSION = array(); // Destroy the variables.
+session_destroy(); // Destroy the session itself.
+session_start();
 // This page allows a logged-in user to make a donation to egret.tv.
 
 ob_start(); // output stored in internal buffer
-session_start();
 include('header_test.php');
 require_once ('config.inc.php');
 require('./mysql.inc.php');
@@ -273,7 +280,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					$_SESSION['response_code'] = $charge->paid;  // = 1
 					
 					// Redirect to the next page:
-					$location = BASE_URL . 'hero/' . 'final.php';
+					$location = BASE_URL . 'hero/' . 'final.php?id=' . htmlspecialchars(session_id());
 					header("Location: $location");
 					exit();
 					//$message_paid = "Thank you for your donation to egret.tv!  A confirmation email has been sent to you.";
@@ -326,7 +333,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // display warning or error messages
 if (isset($message)) { // this type of error message is a system error
-	echo '<div class="alert alert-info" id="error_span">$message</div>';	
+	echo '<div class="alert alert-danger" id="error_span">$message</div>';	
 } elseif (isset($bankerror1))		{ // this type of error message is a Stripe card return error
 		echo "<div class=\"alert alert-danger\">1 $bankerror1</div>";
 } elseif (isset($bankerror7))		{ // this type of error message is a Stripe card return error
@@ -335,11 +342,9 @@ if (isset($message)) { // this type of error message is a system error
 		echo "<div class=\"alert alert-success\">7 $message_paid</div>";
 } elseif (!empty($shipping_errors))		{ // this type of error message is a Stripe card return error
 } else {
-		echo '<div class="alert alert-info" id="error_span">Please enter all the fields below and click the Contribute button - if it does not work look here for an error message.</div>';
+		echo '<div class="alert alert-info" id="error_span">Please enter all the fields below and click the Contribute button - if there is a card error look here for a message.</div>';
 }
 	
-
-
 ?>
 <!-- page VIEW -->
 	<div class="container">

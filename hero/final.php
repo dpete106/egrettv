@@ -1,7 +1,9 @@
 <?php
+$id = $_GET['id'];
+session_id($id);
+session_start();
 // Require the configuration before any PHP code:
 ob_start(); // output stored in internal buffer
-session_start();
 include('header_test.php');
 require_once ('config.inc.php');
 
