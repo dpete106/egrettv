@@ -58,9 +58,11 @@ include('./hero/header_test.php');
 				<h4>Advocacy</h4>
 				<p>
 				The work of egret.tv supports clean air, water and habitat of the Long Island Sound, slowing climate change, and over-development protection.<br>
-				Its goal is promote safe citizen behaviors which lead to the sustainability of the Long Island Sound ecosystem.<br>
-				egret.tv participates in the real-world and digital community of environmentalist and environmental organizations in order to help raise awareness of the issues that are detrimental to the health of the Long Island Sound.<br>
-				egret.tv supports laws and the political process which protect our natural resources.</p>
+				<ul class="list-group">
+				<li class="list-group-item">Its goal is promote safe citizen behaviors which lead to the sustainability of the Long Island Sound ecosystem.</li>
+				<li class="list-group-item">egret.tv participates in the real-world and digital community of environmentalist and environmental organizations in order to help raise awareness of the issues that are detrimental to the health of the Long Island Sound.</li>
+				<li class="list-group-item">egret.tv supports laws and the political process which protect our natural resources.</li>
+				</ul></p>
 				<img src="/egrettv/images/gegret.gif"  class="img-fluid"  >
 				</div>
 			</div>
