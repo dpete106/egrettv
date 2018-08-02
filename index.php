@@ -45,11 +45,10 @@ include('./hero/header_test.php');
 			<div class="row">
 				<div class="col-lg-6">
 				<h4>Mission</h4>
-				<p>The mission of egret.tv is to the protect and preserve the Long Island Sound ecosystem.
-				The vision of egret.tv is a sustainable healthy Long Island Sound coexisting with a vibrant economy benefiting all people living in the region.
-				The work of egret.tv supports clean air, water and habitat of the Long Island Sound, slowing climate change, and over-development protection. 
+				<p>egret.tv is a non-profit organization.<br>
+				The vision of egret.tv is a sustainable healthy Long Island Sound coexisting with a vibrant economy benefiting all people living in the region.<br>
+				The mission of egret.tv is to the protect and preserve the Long Island Sound ecosystem.
 				<!-- egret.tv is a tax exempt organization under Section 501(c)3 of the Internal Revenue Code (pending status). -->
-				egret.tv is a non-profit organization.
 				</p>
 				</p>
 				<img src="/egrettv/images/ltern.gif"  class="img-fluid"  >
@@ -57,8 +56,10 @@ include('./hero/header_test.php');
 				
 				<div class="col-lg-6">
 				<h4>Advocacy</h4>
-				<p>egret.tv participates in the real-world and social media community of environmentalist and environmental organizations in order to help raise awareness of the issues that are detrimental to the health of the Long Island Sound.
-				Its goal is promote safe citizen behaviors which lead to the sustainability of the Long Island Sound ecosystem.
+				<p>
+				The work of egret.tv supports clean air, water and habitat of the Long Island Sound, slowing climate change, and over-development protection.<br>
+				Its goal is promote safe citizen behaviors which lead to the sustainability of the Long Island Sound ecosystem.<br>
+				egret.tv participates in the real-world and digital community of environmentalist and environmental organizations in order to help raise awareness of the issues that are detrimental to the health of the Long Island Sound.<br>
 				egret.tv supports laws and the political process which protect our natural resources.</p>
 				<img src="/egrettv/images/gegret.gif"  class="img-fluid"  >
 				</div>
@@ -67,8 +68,14 @@ include('./hero/header_test.php');
 			<div class="row">
 				<div class="col-lg-6">
 				<h4>Action</h4>
-				<p>egret.tv hosts a streaming webcam of the Long Island Sound.  In social media egret.tv uses its publishing platform, content distribution, and social networking links as an integral part of the environmentalist community.</p>
-          
+				<p>
+				The output of egret.tv is used to educate and empower citizens to develop environmentally responsible behaviors.
+				<ul class="list-group">
+				<li class="list-group-item">egret.tv hosts a live streaming webcam of the Long Island Sound.</li>
+				<li class="list-group-item">egret.tv produces videos of shoreline birds cohabitataing in the Long Island Sound ecosystem.</li>
+				<li class="list-group-item">In social media egret.tv uses its publishing platform, content distribution, and social networking links as an integral part of the environmentalist digital community.</li>
+				<li class="list-group-item">The goal of egret.tv is to become an IRS 501(3)c non-profit organization.</li>
+				</ul></p>
 				<img src="/egrettv/images/snegret.gif"  class="img-fluid"  >
 				</div>
 				<div class="col-lg-6">
