@@ -58,11 +58,24 @@ include('./hero/header_test.php');
 				<h4>Advocacy</h4>
 				<p>
 				The work of egret.tv supports clean air, water and habitat of the Long Island Sound, slowing climate change, and over-development protection.<br>
+				</p><p>
+				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+				Read More
+				</button>
+				</p>
+				
+				
+				<div class="collapse" id="collapseExample2">
+				<div class="card card-body">
+				<p>
 				<ul class="list-group">
 				<li class="list-group-item">Its goal is promote safe citizen behaviors which lead to the sustainability of the Long Island Sound ecosystem.</li>
 				<li class="list-group-item">egret.tv participates in the real-world and digital community of environmentalist and environmental organizations in order to help raise awareness of the issues that are detrimental to the health of the Long Island Sound.</li>
 				<li class="list-group-item">egret.tv supports laws and the political process which protect our natural resources.</li>
 				</ul></p>
+				</div>
+				</div>
+				
 				<img src="/egrettv/images/gegret.gif"  class="img-fluid"  >
 				</div>
 			</div>
@@ -72,12 +85,24 @@ include('./hero/header_test.php');
 				<h4>Action</h4>
 				<p>
 				The output of egret.tv is used to educate and empower citizens to develop environmentally responsible behaviors.
+				</p><p>
+				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+				Read More
+				</button>
+				</p>
+				
+				<div class="collapse" id="collapseExample3">
+				<div class="card card-body">
+				<p>
 				<ul class="list-group">
 				<li class="list-group-item">egret.tv hosts a live streaming webcam of the Long Island Sound.</li>
 				<li class="list-group-item">egret.tv produces videos of shoreline birds cohabitataing in the Long Island Sound ecosystem.</li>
 				<li class="list-group-item">In social media egret.tv uses its publishing platform, content distribution, and social networking links as an integral part of the environmentalist digital community.</li>
 				<li class="list-group-item">The goal of egret.tv is to become an IRS 501(3)c non-profit organization.</li>
 				</ul></p>
+				</div>
+				</div>
+				
 				<img src="/egrettv/images/snegret.gif"  class="img-fluid"  >
 				</div>
 				<div class="col-lg-6">
