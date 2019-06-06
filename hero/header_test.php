@@ -35,18 +35,19 @@ if ($page == "webcam" ){
 ?>	
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<script src="http://localhost/egrettv/bootstrap-4-dist/js/bootstrap.min.js"></script>
+	<!-- <script src="/bootstrap-4-dist/js/bootstrap.min.js"></script> -->
 
 	<link href="http://localhost/egrettv/css/element_style.css" rel="stylesheet">
+	<!-- <link href="../css/element_style.css" rel="stylesheet"> -->
     <!-- Bootstrap core CSS -->
     <link href="http://localhost/egrettv/bootstrap-4-dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- <link href="../bootstrap-4-dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
-    <!-- Custom styles for this template
-    <link href="http://localhost/egrettv/css/narrow-jumbotron.css" rel="stylesheet">  
-     <link href="http://localhost/egrettv/css/jumbotron.css" rel="stylesheet">  -->
+    <!-- Custom styles for this template -->
 	<link href="http://localhost/egrettv/css/style.css" rel="stylesheet">
+	<!-- <link href="../css/style.css" rel="stylesheet"> -->
 	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 
