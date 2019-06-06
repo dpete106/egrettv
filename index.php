@@ -21,6 +21,7 @@ include('./hero/header_test.php');
 				<div align="center" class="embed-responsive embed-responsive-16by9">
 				<video autoplay loop class="embed-responsive-item" controls>
 				<source src="/egrettv/images/giphy.mp4" type="video/mp4" >
+				<!-- <source src="/images/giphy.mp4" type="video/mp4" > -->
 				</video>
 				</div>
 				</div>
@@ -52,6 +53,7 @@ include('./hero/header_test.php');
 				</p>
 				</p>
 				<img src="/egrettv/images/ltern.gif"  class="img-fluid"  >
+				<!-- <img src="/images/ltern.gif"  class="img-fluid"  > -->
 				</div>
 				
 				<div class="col-lg-6">
@@ -77,6 +79,7 @@ include('./hero/header_test.php');
 				</div>
 				
 				<img src="/egrettv/images/gegret.gif"  class="img-fluid"  >
+				<!-- <img src="/images/gegret.gif"  class="img-fluid"  > -->
 				</div>
 			</div>
 		
@@ -104,6 +107,7 @@ include('./hero/header_test.php');
 				</div>
 				
 				<img src="/egrettv/images/snegret.gif"  class="img-fluid"  >
+				<!-- <img src="/images/snegret.gif"  class="img-fluid"  > -->
 				</div>
 				<div class="col-lg-6">
 				</div>
