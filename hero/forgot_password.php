@@ -56,7 +56,9 @@ if (isset($_POST['submitted'])) {
 				"Bcc: " . PHP_EOL .
 				"X-Mailer: PHP-" . phpversion() . PHP_EOL;
 				$body = "Your password to log into egret.tv has been temporarily changed to '$p'. Please log in using this password and this email address. Then you may change your password to something more familiar.";
-				mail($esc_email, 'From: davestorkman@egret.tv', $body, $headers);
+			//test
+			echo 'pass: ' . $p;
+				//mail($esc_email, 'From: davestorkman@egret.tv', $body, $headers);
 			
 			// Print a message and wrap up:
 			echo '<div class="alert alert-success">Your password has been changed. You will receive the new, temporary password at the email address with which you registered. Once you have logged in with this password, you may change it by clicking on the "Change Password" link.</div>';

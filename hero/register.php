@@ -57,6 +57,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
 	}
 
 	// Check for random number equal to entered number:
+  //echo "1 " . $trimmed['numbers'];
 	if ($_SESSION['rand_number'] != $trimmed['numbers']) {
 		echo '<div class="alert alert-warning">Please enter the 3 displayed numbers!</div>';
 		// echo '<p class="error">Please enter the 3 displayed numbers!</p>';
@@ -119,7 +120,8 @@ if (isset($_POST['submitted'])) { // Handle the form.
 				"X-Mailer: PHP-" . phpversion() . PHP_EOL;				
 				$body = "Thank you for registering at egret.tv. To activate your account, please click on this link:\n\n";
 				$body .= BASE_URL . 'hero/activate.php?x=' . urlencode($e) . "&y=$a";
-				mail($trimmed['email'], 'From: davestorkman@egret.tv', $body, $headers);
+				//test
+				//mail($trimmed['email'], 'From: davestorkman@egret.tv', $body, $headers);
 				
 				// Finish the page:
 				echo '<div class="alert alert-success">Thank you for registering! A confirmation email has been sent to your address. Please click on the link in that email in order to activate your account.</div>';
@@ -146,6 +148,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
 else {
 
   $_SESSION['rand_number'] = slotnumber();
+  //echo "2 " . $_SESSION['rand_number'];
   }
 
 ?>

@@ -11,7 +11,7 @@
 		</div>
 		<div class="row">
 			<div class="list-group"> 
-				<button type="button" class="list-group-item list-group-item-action" disabled>&copy; egret.tv 2018</button>
+				<button type="button" class="list-group-item list-group-item-action" disabled>&copy; egret.tv 2022</button>
 				<button type="button" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModal">
 				privacy policy</button>
 			</div>

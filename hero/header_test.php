@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
   <?php
-    include_once('./analyticstracking.php'); //analyticstracking.php in both directories
+    include_once('analyticstracking.php'); //analyticstracking.php in both directories
 /***************GET PAGE FROM URL***********************/
 $uri_array=explode("/", $_SERVER['REQUEST_URI']);
 $page = str_replace(".php", "", end($uri_array));
@@ -36,19 +36,18 @@ if ($page == "webcam" ){
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-	<script src="http://localhost/egrettv/bootstrap-4-dist/js/bootstrap.min.js"></script>
-	<!-- <script src="/bootstrap-4-dist/js/bootstrap.min.js"></script> -->
-
+	<script src="http://localhost/egrettv/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+	<!-- <script src="/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>  -->
+	
 	<link href="http://localhost/egrettv/css/element_style.css" rel="stylesheet">
 	<!-- <link href="../css/element_style.css" rel="stylesheet"> -->
     <!-- Bootstrap core CSS -->
-    <link href="http://localhost/egrettv/bootstrap-4-dist/css/bootstrap.min.css" rel="stylesheet">
-	<!-- <link href="../bootstrap-4-dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="http://localhost/egrettv/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- <link href="../bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this template  -->
 	<link href="http://localhost/egrettv/css/style.css" rel="stylesheet">
-	<!-- <link href="../css/style.css" rel="stylesheet"> -->
-	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+	<!-- <link href="../css/style.css" rel="stylesheet">  -->
 
 
   </head>
@@ -82,15 +81,15 @@ if ($page == "webcam" ){
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a  style="font-weight: bold;" class="nav-link" href="http://localhost/egrettv/index.php">Home <span class="sr-only">(current)</span></a></li>
-          <li class="nav-item active">
-            <a  style="font-weight: bold;" class="nav-link" href="/egrettv/hero/connect.php">Contact</a></li>
+            <a  style="font-weight: bold;" class="nav-link" href="/egrettv/index.php">Home <span class="sr-only">(current)</span></a></li>
            <li class="nav-item active">
            <a  style="font-weight: bold;" class="nav-link" href="/egrettv/hero/webcam.php">Sound Cam</a></li>
             <li class="nav-item active">
            <a  style="font-weight: bold;" class="nav-link" href="/egrettv/hero/video.php">Videos</a></li>
-         <li class="nav-item active">
-            <a  style="font-weight: bold;" class="nav-link" href="/egrettv/hero/donation.php">Donate</a></li>
+          <li class="nav-item active">
+            <a  style="font-weight: bold;" class="nav-link" href="/egrettv/hero/connect.php">Contact</a></li>
+         <!-- <li class="nav-item active">
+            <a  style="font-weight: bold;" class="nav-link" href="/hero/donation.php">Donate</a></li> -->
 		  
           <li class="nav-item active dropdown">
 		  

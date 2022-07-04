@@ -14,7 +14,7 @@
 // Flag variable for site status:
 define('LIVE', FALSE);
 // Admin contact address:
-define('EMAIL', 'davestorkman@egret.tv');
+define('EMAIL', 'dpete106@gmail.com');
 // Site URL (base for all redirections):
 define ('BASE_URL', 'http://localhost/egrettv/');
 //define ('BASE_URL', 'http://www.egret.tv/');

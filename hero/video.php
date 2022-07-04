@@ -25,9 +25,6 @@ if (!isset($_SESSION['first_name'])) {
     <div style="background-color:rgba(192,192,192,0.1);" class="jumbotron">
           <h1 class="jumbotron-heading">Popular egret.tv Videos on <a target="_blank" href="https://www.youtube.com/channel/UC6BqMHGjvexrX0aTu_M4f9A" >YouTube</a></h1>
           <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-          <p>
-            <a href="../hero/donation.php" class="btn btn-primary my-2">Support egret.tv</a>
-          </p>
 		  <hr>
 
 <?php # please join
@@ -56,7 +53,7 @@ if (!isset($_SESSION['first_name'])) {
                       <!--<button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
 						<a target="_blank" href="https://youtu.be/JqiBp0oVE5w" class="btn btn-primary my-2">View</a>
                     </div>
-                    <small class="text-muted">700 views</small>
+                    <small class="text-muted">1000+ views</small>
                   </div>
                 </div>
               </div>
@@ -71,7 +68,7 @@ if (!isset($_SESSION['first_name'])) {
                       <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
 						<a target="_blank" href="https://youtu.be/B1WiR8O33SA" class="btn btn-primary my-2">View</a>
                     </div>
-                    <small class="text-muted">3300 views</small>
+                    <small class="text-muted">5000+ views</small>
                   </div>
                 </div>
               </div>
@@ -86,7 +83,7 @@ if (!isset($_SESSION['first_name'])) {
                       <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
 						<a target="_blank" href="https://youtu.be/F1xald0cLgU" class="btn btn-primary my-2">View</a>
                     </div>
-                    <small class="text-muted">1300 views</small>
+                    <small class="text-muted">1500+ views</small>
                   </div>
                 </div>
               </div>

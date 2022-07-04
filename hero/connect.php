@@ -1,6 +1,7 @@
 <?php # connect.php
 ob_start();
 session_start();
+$session_id = session_id();
 include('./header_test.php');
 require_once ('config.inc.php'); 
 include_once( 'class.php' );
@@ -66,7 +67,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
 
 	if ($fn && $ln && $ms && $e) { // If everything's OK...
 				$ef = $e;
-				$et = 'dpete106@gmail.com';
+				$et = 'davestorkman@egret.tv';
 				
 				$headers = "MIME-Version: 1.0" . PHP_EOL .
 				"Content-type: text/html; charset=iso-8859-1" . PHP_EOL .
@@ -98,7 +99,8 @@ else {
 		<div class="row">
 	
 			<div class="col-lg-12">
-			<form class="form-signin" action="../hero/connect.php" method="post">
+			<form class="form-signin" action="/egrettv/hero/connect.php" method="post">
+			<!-- <form class="form-signin" action="../hero/connect.php" method="post"> -->
 			<div class="form-group">
 			<!--<label for="inputFirstName">First Name</label>-->
 			<input type="text" class="form-control" id="inputFirstName" placeholder="FirstName" name="first_name" value="<?php if (isset($trimmed['first_name'])) echo $trimmed['first_name']; ?>">
