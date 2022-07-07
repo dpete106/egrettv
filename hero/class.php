@@ -3,9 +3,9 @@ class database{
 	
 	static public function connect(){
 		$db_host = "localhost";
-		$db_name = 'egrettv';
-		$db_user = "root";
-		$db_pass = '';
+		$db_name = 'egrettv_registration';
+		$db_user = "egrettv_dpete106";
+		$db_pass = 'Qwer@345';
 		$con = new PDO( "mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass );
 		$con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 		return $con;
@@ -52,6 +52,7 @@ $stmt->execute();
 $valid = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if( $valid ) {
+$_SESSION = array();	
 $_SESSION = $valid;
 $success = true;
 }
@@ -65,7 +66,7 @@ return $success;
 }
 
 public function userEmail() {
-echo "email2 " . $this->email . "<br>";
+//echo "email2 " . $this->email . "<br>";
 $success = false;
 try{
 $con = database::connect();
