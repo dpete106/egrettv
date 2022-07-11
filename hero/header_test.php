@@ -34,6 +34,7 @@ if ($page == "webcam" ){
 }
 ?>	
 	
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<script src="http://localhost/egrettv/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>

@@ -1,6 +1,7 @@
 <?php # connect.php
 ob_start();
 session_start();
+//test	  
 $session_id = session_id();
 include('./header_test.php');
 require_once ('config.inc.php'); 
@@ -47,10 +48,10 @@ if (isset($_POST['submitted'])) { // Handle the form.
 	}
 
 	// Check for random number equal to entered number:
-	if ($_SESSION['rand_number'] != $trimmed['numbers']) {
-		echo '<div class="alert alert-warning">Please enter the 3 displayed numbers!</div>';
-		$fn = $ln = $ms = $e = FALSE;
-	}
+	//if ($_SESSION['rand_number'] != $trimmed['numbers']) {
+	//	echo '<div class="alert alert-warning">Please enter the 3 displayed numbers!</div>';
+	//	$fn = $ln = $ms = $e = FALSE;
+	//}
 
 	// Check for an email address:
 	if (preg_match ('/^[\w.-]+@[\w.-]+\.[A-Za-z]{2,6}$/', $trimmed['email'])) {
@@ -80,18 +81,19 @@ if (isset($_POST['submitted'])) { // Handle the form.
 				"Bcc: " . PHP_EOL .
 				"X-Mailer: PHP-" . phpversion() . PHP_EOL;				
 				$body = $ms;
-				mail($et, 'Contact message', $body, $headers);
+				//mail($et, 'Contact message', $body, $headers);
 				echo '<div class="alert alert-success">Thank you for sending a message to the Storkman.</div>';
 
 	} else { // If one of the data tests failed.
 		echo '<div class="alert alert-danger">Please re-enter your message and try again.</div>';
 		
 	}
-    $_SESSION['rand_number'] = slotnumber();
+	//antispam code
+    //$_SESSION['rand_number'] = slotnumber();
 
 }
 else {
-  $_SESSION['rand_number'] = slotnumber();
+  //$_SESSION['rand_number'] = slotnumber();
 }
 
 ?>	
@@ -99,6 +101,7 @@ else {
 		<div class="row">
 	
 			<div class="col-lg-12">
+			<!-- <form class="form-signin" action="/egrettv/hero/connect.php" method="post"  onsubmit="return validateRecaptcha();"> -->
 			<form class="form-signin" action="/egrettv/hero/connect.php" method="post">
 			<!-- <form class="form-signin" action="../hero/connect.php" method="post"> -->
 			<div class="form-group">
@@ -121,17 +124,23 @@ else {
 			<input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email" value="<?php if (isset($trimmed['email'])) echo $trimmed['email']; ?>">
 			</div>
 		
-			<div class="form-group">
-			<?php echo $_SESSION['rand_number']; ?>
+			<!-- <div class="form-group">
+			<?php //echo $_SESSION['rand_number']; ?>
 		
 			<label for="inputNumbers">Enter these numbers </label>
 			<input type="text" class="form-control" id="inputNumbers" placeholder="Numbers" name="numbers">
 			<p>To prevent spam please enter the 3 numbers displayed above and to the left.</p>
-			</div>
+			</div> -->
 		
 			<div class="form-group">
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Send Email</button>
-			<input type="hidden" name="submitted" value="TRUE" />
+				<div class="col-md-12 mb-3">
+					<div class="g-recaptcha" data-sitekey="6LdPeXQaAAAAANQOapaNryRPnFTo7QzkHJiEQZ8R"></div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Send Email</button>
+				<input type="hidden" name="submitted" value="TRUE" />
 			</div>
 			</form>
 			</div>
@@ -151,7 +160,25 @@ else {
 		include('footer.php');
 		?>
     </footer>
+	
+	<script type="text/javascript">
+  var onloadCallback = function() {
+  };
+  function validateRecaptcha() {
+        var response = grecaptcha.getResponse();
+        if (response.length === 0) {
+            alert("click not a robot");
+            return false;
+        } else {
+           // alert("validated");
+            return true;
+        }
+    }
+	</script>
 
+	<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+	</script>
 
   </body>
 </html>

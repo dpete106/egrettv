@@ -57,11 +57,11 @@ if (isset($_POST['submitted'])) { // Handle the form.
 	}
 
 	// Check for random number equal to entered number:
-  //echo "1 " . $trimmed['numbers'];
-	if ($_SESSION['rand_number'] != $trimmed['numbers']) {
-		echo '<div class="alert alert-warning">Please enter the 3 displayed numbers!</div>';
+	//echo "1 " . $trimmed['numbers'];
+	//if ($_SESSION['rand_number'] != $trimmed['numbers']) {
+	//	echo '<div class="alert alert-warning">Please enter the 3 displayed numbers!</div>';
 		// echo '<p class="error">Please enter the 3 displayed numbers!</p>';
-	}
+	//}
 
 	// Check for an email address:
 	if (preg_match ('/^[\w.-]+@[\w.-]+\.[A-Za-z]{2,6}$/', $trimmed['email'])) {
@@ -141,20 +141,21 @@ if (isset($_POST['submitted'])) { // Handle the form.
 		echo '<div class="alert alert-danger">Please re-enter your passwords and try again.</div>';
 		
 	}
-    $_SESSION['rand_number'] = slotnumber();
+	//antispam code
+    //$_SESSION['rand_number'] = slotnumber();
 	
 
 } // End of the main Submit conditional.
 else {
 
-  $_SESSION['rand_number'] = slotnumber();
-  //echo "2 " . $_SESSION['rand_number'];
+  //$_SESSION['rand_number'] = slotnumber();
   }
 
 ?>
 
 	<div class="container">
 
+	<!-- <form class="needs-validation" novalidate="" action="../hero/register.php" method="post" onsubmit="return validateRecaptcha();"> -->
 	<form class="needs-validation" novalidate="" action="../hero/register.php" method="post">
 		<div class="row">
 			<div class="col-md-6 mb-3">
@@ -203,7 +204,7 @@ else {
 		</div>
 		
 		
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-md-8 mb-3">
 				<?php echo $_SESSION['rand_number']; ?>
 				<label for="inputNumbers">Enter these numbers</label>
@@ -223,9 +224,16 @@ else {
 				</div>
 			</div>
 		
+		</div> -->
+		
+		<div class="row">
+			<div class="col-md-12 mb-3">
+				<div class="g-recaptcha" data-sitekey="6LdPeXQaAAAAANQOapaNryRPnFTo7QzkHJiEQZ8R"></div>
+			</div>
 		</div>
 		
 		<button class="btn btn-primary btn-lg btn-block" type="submit">Join egret.tv</button>
+		
 		<input type="hidden" name="submitted" value="TRUE" />
 		
 	</form>
@@ -241,7 +249,24 @@ else {
 		?>
       </footer>
 
+	<script type="text/javascript">
+  var onloadCallback = function() {
+  };
+  function validateRecaptcha() {
+        var response = grecaptcha.getResponse();
+        if (response.length === 0) {
+            alert("click not a robot");
+            return false;
+        } else {
+           // alert("validated");
+            return true;
+        }
+    }
+	</script>
 
+	<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+	</script>
  
   </body>
 </html>
