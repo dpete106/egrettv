@@ -27,7 +27,7 @@ include('./hero/header_test.php');
 				</div>
 			</div>      
         
-			<p class="lead"><em>If we don't get to know them, we're going to lose them.</em></p>
+			<p class="lead"><em>Birds are sensitive indicators of the environment, a sort of "ecological litmus paper".  The observations of bird populations over time leads to environmental awareness and a signal of possible change - Roger Tory Peterson. </em></p>
 			<p>
 			<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 			Read More
@@ -36,7 +36,7 @@ include('./hero/header_test.php');
 			
 			<div class="collapse" id="collapseExample">
 			<div class="card card-body">
-             <p>Birds are sensitive indicators of the environment, a sort of "ecological litmus paper".  The observations of bird populations over time leads to environmental awareness and a signal of possible change - Roger Tory Peterson. </p>
+             <p>If we don't get to know them, we're going to lose them.</p>
 			</div>
 			</div>
 		</div> <!-- /container -->
